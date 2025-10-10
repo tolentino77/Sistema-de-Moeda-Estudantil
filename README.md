@@ -27,6 +27,7 @@ Nesta primeira entrega, o foco está na **modelagem e estrutura inicial** do sis
 
 ## 📚 Escopo da Release 1
 
+
 - **Modelagem inicial:**
   - Diagrama de Casos de Uso  
   - Histórias do Usuário  
