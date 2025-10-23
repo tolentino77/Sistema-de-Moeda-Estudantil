@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enviar Moedas - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="enviar.html">Enviar Moedas</a></li>
+          <li><a href="extrato.html">Extrato</a></li>
+          <li><a href="alunos.html">Alunos</a></li>
+          <li><a href="../index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="balance-display">
+      <div class="balance-label">Seu Saldo Disponível</div>
+      <div class="balance-amount">750 🪙</div>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <!-- Formulário de Envio -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Enviar Moedas para Aluno</h2>
+          <p style="color: var(--text-secondary);">Reconheça o mérito dos seus alunos</p>
+        </div>
+
+        <!-- POST /api/transactions/transaction -->
+        <form method="POST" action="/api/transactions/transaction">
+          <input type="hidden" name="professorId" value="1">
+
+          <div class="form-group">
+            <label for="aluno">Selecione o Aluno *</label>
+            <select id="aluno" name="alunoId" required>
+              <option value="">Escolha um aluno</option>
+              <option value="1">João Silva - Engenharia de Software</option>
+              <option value="2">Maria Oliveira - Ciência da Computação</option>
+              <option value="3">Pedro Santos - Sistemas de Informação</option>
+              <option value="4">Ana Costa - Engenharia de Software</option>
+              <option value="5">Carlos Lima - Ciência da Computação</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="valor">Quantidade de Moedas *</label>
+            <input type="number" id="valor" name="valor" min="1" max="750" placeholder="Ex: 50" required>
+            <small style="color: var(--text-secondary);">Máximo: 750 moedas disponíveis</small>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem">Mensagem de Reconhecimento *</label>
+            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva o motivo do reconhecimento..." required></textarea>
+            <small style="color: var(--text-secondary);">Explique por que o aluno está recebendo estas moedas</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Enviar Moedas</button>
+        </form>
+      </div>
+
+      <!-- Sugestões de Reconhecimento -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">💡 Sugestões de Reconhecimento</h2>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="card" style="padding: 1rem;">
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Participação em Aula</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Reconheça alunos que participam ativamente das discussões</p>
+            <div style="margin-top: 0.5rem; font-weight: 600;">Sugestão: 20-50 moedas</div>
+          </div>
+
+          <div class="card" style="padding: 1rem;">
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Trabalho Excepcional</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Para trabalhos que superaram as expectativas</p>
+            <div style="margin-top: 0.5rem; font-weight: 600;">Sugestão: 100-200 moedas</div>
+          </div>
+
+          <div class="card" style="padding: 1rem;">
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Ajuda aos Colegas</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Alunos que ajudam outros a aprender</p>
+            <div style="margin-top: 0.5rem; font-weight: 600;">Sugestão: 30-70 moedas</div>
+          </div>
+
+          <div class="card" style="padding: 1rem;">
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Projeto Inovador</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Projetos criativos e bem executados</p>
+            <div style="margin-top: 0.5rem; font-weight: 600;">Sugestão: 150-300 moedas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

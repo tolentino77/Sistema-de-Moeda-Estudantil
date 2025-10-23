@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil da Empresa - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="vantagens.html">Minhas Vantagens</a></li>
+          <li><a href="cadastrar-vantagem.html">Nova Vantagem</a></li>
+          <li><a href="../index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- GET /api/companies/company/{id} -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Perfil da Empresa</h2>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-avatar">TS</div>
+        <div class="profile-info">
+          <h1 class="profile-name">TechStore</h1>
+          <div class="profile-detail"><strong>Razão Social:</strong> TechStore Comércio de Eletrônicos Ltda</div>
+          <div class="profile-detail"><strong>CNPJ:</strong> 12.345.678/0001-90</div>
+          <div class="profile-detail"><strong>Email:</strong> contato@techstore.com.br</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Estatísticas</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2.5rem; color: var(--primary-color); font-weight: 700;">8</div>
+          <div style="color: var(--text-secondary);">Vantagens Cadastradas</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2.5rem; color: var(--success-color); font-weight: 700;">142</div>
+          <div style="color: var(--text-secondary);">Resgates Realizados</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 2.5rem; color: var(--warning-color); font-weight: 700;">4.8</div>
+          <div style="color: var(--text-secondary);">Avaliação Média</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Ações Rápidas</h2>
+      </div>
+      <div class="grid grid-3">
+        <a href="cadastrar-vantagem.html" class="btn btn-primary btn-block">Cadastrar Nova Vantagem</a>
+        <a href="vantagens.html" class="btn btn-secondary btn-block">Ver Minhas Vantagens</a>
+        <a href="relatorios.html" class="btn btn-secondary btn-block">Relatórios</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

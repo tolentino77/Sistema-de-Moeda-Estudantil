@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card" style="max-width: 500px; margin: 3rem auto;">
+      <div class="card-header text-center">
+        <h1 class="card-title">Login</h1>
+        <p style="color: var(--text-secondary);">Entre com suas credenciais</p>
+      </div>
+
+      <!-- Formulário de Login -->
+      <form method="POST" action="/api/auth/login">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Não tem uma conta?</p>
+        <div class="flex" style="flex-direction: column; gap: 0.5rem;">
+          <a href="../aluno/cadastro.html" class="btn btn-secondary btn-block">Cadastrar como Aluno</a>
+          <a href="../professor/cadastro.html" class="btn btn-secondary btn-block">Cadastrar como Professor</a>
+          <a href="../empresa/cadastro.html" class="btn btn-secondary btn-block">Cadastrar como Empresa</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

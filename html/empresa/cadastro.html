@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Empresa - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="../login/index.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card" style="max-width: 800px; margin: 2rem auto;">
+      <div class="card-header">
+        <h1 class="card-title">Cadastro de Empresa Parceira</h1>
+        <p style="color: var(--text-secondary);">Torne-se um parceiro e ofereça vantagens aos estudantes</p>
+      </div>
+
+      <!-- POST /api/companies/company -->
+      <form method="POST" action="/api/companies/company">
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="nomeFantasia">Nome Fantasia *</label>
+            <input type="text" id="nomeFantasia" name="nomeFantasia" placeholder="Ex: TechStore" required>
+          </div>
+
+          <div class="form-group">
+            <label for="razaoSocial">Razão Social *</label>
+            <input type="text" id="razaoSocial" name="razaoSocial" placeholder="Ex: TechStore Comércio Ltda" required>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="cnpj">CNPJ *</label>
+            <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Corporativo *</label>
+            <input type="email" id="email" name="email" placeholder="contato@empresa.com.br" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha *</label>
+          <input type="password" id="senha" name="senha" required>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>ℹ️ Benefícios de ser parceiro:</strong>
+          <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+            <li>Visibilidade para milhares de estudantes</li>
+            <li>Conexão com talentos universitários</li>
+            <li>Fortalecimento da marca no ambiente acadêmico</li>
+          </ul>
+        </div>
+
+        <div class="flex gap-2 mt-3">
+          <button type="submit" class="btn btn-primary">Cadastrar Empresa</button>
+          <a href="../login/index.html" class="btn btn-secondary">Já tenho conta</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

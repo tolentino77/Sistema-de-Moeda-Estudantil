@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trocar Moedas - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="extrato.html">Extrato</a></li>
+          <li><a href="trocar-moedas.html">Trocar Moedas</a></li>
+          <li><a href="../index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="balance-display">
+      <div class="balance-label">Seu Saldo Disponível</div>
+      <div class="balance-amount">1.250 🪙</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Vantagens Disponíveis</h2>
+        <p style="color: var(--text-secondary);">Escolha uma vantagem para trocar suas moedas</p>
+      </div>
+
+      <!-- GET /api/advantages/available -->
+      <div class="grid grid-3">
+        <!-- Vantagem 1 -->
+        <div class="advantage-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Desconto Livraria" class="advantage-image">
+          <div class="advantage-content">
+            <h3 class="advantage-title">Desconto 20% Livraria</h3>
+            <p class="advantage-description">Desconto de 20% em qualquer compra na Livraria Acadêmica</p>
+            <div class="advantage-cost">50 🪙</div>
+            <!-- POST /api/exchanges/exchange -->
+            <form method="POST" action="/api/exchanges/exchange">
+              <input type="hidden" name="alunoId" value="1">
+              <input type="hidden" name="vantagemId" value="1">
+              <button type="submit" class="btn btn-primary btn-block">Resgatar</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Vantagem 2 -->
+        <div class="advantage-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Vale-refeição" class="advantage-image">
+          <div class="advantage-content">
+            <h3 class="advantage-title">Vale-refeição R$ 30</h3>
+            <p class="advantage-description">Vale-refeição de R$ 30,00 para usar no restaurante universitário</p>
+            <div class="advantage-cost">100 🪙</div>
+            <form method="POST" action="/api/exchanges/exchange">
+              <input type="hidden" name="alunoId" value="1">
+              <input type="hidden" name="vantagemId" value="2">
+              <button type="submit" class="btn btn-primary btn-block">Resgatar</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Vantagem 3 -->
+        <div class="advantage-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Ingresso Cinema" class="advantage-image">
+          <div class="advantage-content">
+            <h3 class="advantage-title">2 Ingressos de Cinema</h3>
+            <p class="advantage-description">Dois ingressos para qualquer sessão no Cineplex</p>
+            <div class="advantage-cost">150 🪙</div>
+            <form method="POST" action="/api/exchanges/exchange">
+              <input type="hidden" name="alunoId" value="1">
+              <input type="hidden" name="vantagemId" value="3">
+              <button type="submit" class="btn btn-primary btn-block">Resgatar</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Vantagem 4 -->
+        <div class="advantage-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Academia" class="advantage-image">
+          <div class="advantage-content">
+            <h3 class="advantage-title">Mensalidade Academia</h3>
+            <p class="advantage-description">50% de desconto na mensalidade da Academia Fitness</p>
+            <div class="advantage-cost">200 🪙</div>
+            <form method="POST" action="/api/exchanges/exchange">
+              <input type="hidden" name="alunoId" value="1">
+              <input type="hidden" name="vantagemId" value="4">
+              <button type="submit" class="btn btn-primary btn-block">Resgatar</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Vantagem 5 -->
+        <div class="advantage-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Curso Online" class="advantage-image">
+          <div class="advantage-content">
+            <h3 class="advantage-title">Curso Online Gratuito</h3>
+            <p class="advantage-description">Acesso gratuito a qualquer curso da plataforma EduTech</p>
+            <div class="advantage-cost">300 🪙</div>
+            <form method="POST" action="/api/exchanges/exchange">
+              <input type="hidden" name="alunoId" value="1">
+              <input type="hidden" name="vantagemId" value="5">
+              <button type="submit" class="btn btn-primary btn-block">Resgatar</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Vantagem 6 -->
+        <div class="advantage-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Notebook" class="advantage-image">
+          <div class="advantage-content">
+            <h3 class="advantage-title">Desconto 15% Notebook</h3>
+            <p class="advantage-description">15% de desconto na compra de notebooks na TechStore</p>
+            <div class="advantage-cost">500 🪙</div>
+            <form method="POST" action="/api/exchanges/exchange">
+              <input type="hidden" name="alunoId" value="1">
+              <input type="hidden" name="vantagemId" value="6">
+              <button type="submit" class="btn btn-primary btn-block">Resgatar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

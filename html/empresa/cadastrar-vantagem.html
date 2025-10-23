@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Vantagem - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="vantagens.html">Minhas Vantagens</a></li>
+          <li><a href="cadastrar-vantagem.html">Nova Vantagem</a></li>
+          <li><a href="../index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card" style="max-width: 800px; margin: 2rem auto;">
+      <div class="card-header">
+        <h1 class="card-title">Cadastrar Nova Vantagem</h1>
+        <p style="color: var(--text-secondary);">Crie uma vantagem atrativa para os estudantes</p>
+      </div>
+
+      <!-- POST /api/advantages/advantage -->
+      <form method="POST" action="/api/advantages/advantage">
+        <input type="hidden" name="empresaId" value="1">
+
+        <div class="form-group">
+          <label for="nome">Nome da Vantagem *</label>
+          <input type="text" id="nome" name="nome" placeholder="Ex: Desconto 20% em Notebooks" required>
+        </div>
+
+        <div class="form-group">
+          <label for="descricao">Descrição Detalhada *</label>
+          <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva os detalhes da vantagem, condições de uso, validade, etc." required></textarea>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="custo">Custo em Moedas *</label>
+            <input type="number" id="custo" name="custo" min="1" placeholder="Ex: 100" required>
+            <small style="color: var(--text-secondary);">Quantidade de moedas necessárias para resgatar</small>
+          </div>
+
+          <div class="form-group">
+            <label for="quantidade">Quantidade Disponível *</label>
+            <input type="number" id="quantidade" name="quantidade" min="1" placeholder="Ex: 50" required>
+            <small style="color: var(--text-secondary);">Número de resgates disponíveis</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="imagem">URL da Imagem</label>
+          <input type="url" id="imagem" name="imagemUrl" placeholder="https://exemplo.com/imagem.jpg">
+          <small style="color: var(--text-secondary);">Link para uma imagem representativa da vantagem</small>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>💡 Dicas para criar vantagens atrativas:</strong>
+          <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+            <li>Seja claro sobre o que está sendo oferecido</li>
+            <li>Defina um preço justo em moedas</li>
+            <li>Inclua condições de uso e validade</li>
+            <li>Use imagens de qualidade</li>
+          </ul>
+        </div>
+
+        <div class="flex gap-2 mt-3">
+          <button type="submit" class="btn btn-primary">Cadastrar Vantagem</button>
+          <a href="vantagens.html" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Aluno - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="extrato.html">Extrato</a></li>
+          <li><a href="trocar-moedas.html">Trocar Moedas</a></li>
+          <li><a href="../index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- GET /api/students/student/{id}/balance -->
+    <div class="balance-display">
+      <div class="balance-label">Seu Saldo Atual</div>
+      <div class="balance-amount">1.250 🪙</div>
+      <p>Moedas disponíveis para troca</p>
+    </div>
+
+    <!-- GET /api/students/student/{id} -->
+    <div class="card">
+      <div class="card-header flex-between">
+        <h2 class="card-title">Meu Perfil</h2>
+        <a href="editar.html" class="btn btn-primary">Editar Perfil</a>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-avatar">JS</div>
+        <div class="profile-info">
+          <h1 class="profile-name">João Silva</h1>
+          <div class="profile-detail"><strong>Email:</strong> joao.silva@email.com</div>
+          <div class="profile-detail"><strong>CPF:</strong> 123.456.789-00</div>
+          <div class="profile-detail"><strong>RG:</strong> 12.345.678-9</div>
+          <div class="profile-detail"><strong>Curso:</strong> Engenharia de Software</div>
+          <div class="profile-detail"><strong>Instituição:</strong> Universidade Federal</div>
+          <div class="profile-detail"><strong>Endereço:</strong> Rua das Flores, 123 - Centro</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Ações Rápidas</h2>
+      </div>
+      <div class="grid grid-3">
+        <a href="extrato.html" class="btn btn-primary btn-block">Ver Extrato</a>
+        <a href="trocar-moedas.html" class="btn btn-success btn-block">Trocar Moedas</a>
+        <a href="editar.html" class="btn btn-secondary btn-block">Editar Dados</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

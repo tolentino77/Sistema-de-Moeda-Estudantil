@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Vantagens - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <nav>
+        <ul>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="vantagens.html">Minhas Vantagens</a></li>
+          <li><a href="cadastrar-vantagem.html">Nova Vantagem</a></li>
+          <li><a href="../index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="card-header flex-between">
+        <div>
+          <h2 class="card-title">Minhas Vantagens</h2>
+          <p style="color: var(--text-secondary);">Gerencie as vantagens oferecidas pela sua empresa</p>
+        </div>
+        <a href="cadastrar-vantagem.html" class="btn btn-primary">+ Nova Vantagem</a>
+      </div>
+
+      <!-- GET /api/advantages/all (filtrado por empresa) -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Custo</th>
+              <th>Disponível</th>
+              <th>Resgates</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Desconto 15% Notebook</strong></td>
+              <td>500 🪙</td>
+              <td>15 unidades</td>
+              <td>35 resgates</td>
+              <td><span style="color: var(--success-color);">● Ativa</span></td>
+              <td>
+                <div class="flex gap-1">
+                  <a href="editar-vantagem.html?id=1" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Editar</a>
+                  <form method="POST" action="/api/advantages/advantage/1" style="display: inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="return confirm('Deseja excluir esta vantagem?')">Excluir</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Mouse Gamer</strong></td>
+              <td>200 🪙</td>
+              <td>30 unidades</td>
+              <td>18 resgates</td>
+              <td><span style="color: var(--success-color);">● Ativa</span></td>
+              <td>
+                <div class="flex gap-1">
+                  <a href="editar-vantagem.html?id=2" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Editar</a>
+                  <form method="POST" action="/api/advantages/advantage/2" style="display: inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="return confirm('Deseja excluir esta vantagem?')">Excluir</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Teclado Mecânico</strong></td>
+              <td>350 🪙</td>
+              <td>0 unidades</td>
+              <td>25 resgates</td>
+              <td><span style="color: var(--danger-color);">● Esgotada</span></td>
+              <td>
+                <div class="flex gap-1">
+                  <a href="editar-vantagem.html?id=3" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Editar</a>
+                  <form method="POST" action="/api/advantages/advantage/3" style="display: inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="return confirm('Deseja excluir esta vantagem?')">Excluir</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
