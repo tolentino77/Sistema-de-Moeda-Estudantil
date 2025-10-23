@@ -53,7 +53,6 @@ As funcionalidades implementadas ou previstas na estrutura da primeira versão i
     * **Dependências:** Spring Boot Starter Web, Data JPA, Validation, Actuator.
     * **Persistência:** JPA / Hibernate.
 * **Banco de Dados:** PostgreSQL (Configuração local e para produção/Render).
-* **Frontend (Protótipo HTML/CSS):** HTML/CSS simples (dark theme) para as telas de login/cadastro e dashboards.
 * **Frontend (IDEAL - Next.js/React):** Estrutura de projeto com Next.js e Tailwind CSS para um desenvolvimento futuro.
 * **Infraestrutura:** Docker e Docker Compose para ambiente de desenvolvimento com PostgreSQL, e arquivo de deploy para Render.com.
 * **Padrões de Projeto:** Arquitetura MVC, com uso de DTOs, Converters e Services (DAO/ORM).
