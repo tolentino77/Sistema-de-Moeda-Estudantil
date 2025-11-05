@@ -1,0 +1,29 @@
+/* Vantagens (Aluno > Trocar Moedas) */
+.grid.grid-3 { align-items: stretch; }
+
+.advantage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+}
+
+.advantage-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+
+.advantage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+}
+
+.advantage-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+.advantage-description { color: var(--text-secondary); font-size: 0.95rem; }
+.advantage-cost { font-weight: 700; color: var(--primary-color); margin-top: 0.25rem; }
+.advantage-content form { margin-top: auto; }
+

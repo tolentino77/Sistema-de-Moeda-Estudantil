@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro de Aluno - Sistema de Moeda Estudantil</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
       <nav>
         <ul>
-          <li><a href="../index.html">Início</a></li>
-          <li><a href="../login/index.html">Login</a></li>
+          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#home"></use></svg><span>Início</span></a></li>
+          <li><a href="../login/index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#login"></use></svg><span>Login</span></a></li>
         </ul>
       </nav>
     </div>
@@ -81,8 +82,8 @@
         </div>
 
         <div class="flex gap-2 mt-3">
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
-          <a href="../login/index.html" class="btn btn-secondary">Já tenho conta</a>
+          <button type="submit" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar</span></button>
+          <a href="../login/index.html" class="btn btn-secondary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#login"></use></svg><span>Já tenho conta</span></a>
         </div>
       </form>
     </div>
@@ -93,5 +94,7 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>
+

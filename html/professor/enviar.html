@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enviar Moedas - Sistema de Moeda Estudantil</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
       <nav>
         <ul>
-          <li><a href="perfil.html">Perfil</a></li>
-          <li><a href="enviar.html">Enviar Moedas</a></li>
-          <li><a href="extrato.html">Extrato</a></li>
-          <li><a href="alunos.html">Alunos</a></li>
-          <li><a href="../index.html">Sair</a></li>
+          <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Perfil</span></a></li>
+          <li><a href="enviar.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Enviar Moedas</span></a></li>
+          <li><a href="extrato.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Extrato</span></a></li>
+          <li><a href="alunos.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Alunos</span></a></li>
+          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
@@ -25,7 +26,7 @@
   <main>
     <div class="balance-display">
       <div class="balance-label">Seu Saldo Disponível</div>
-      <div class="balance-amount">750 🪙</div>
+      <div class="balance-amount">750 �Y�T</div>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
@@ -64,14 +65,14 @@
             <small style="color: var(--text-secondary);">Explique por que o aluno está recebendo estas moedas</small>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-block">Enviar Moedas</button>
+          <button type="submit" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Enviar Moedas</span></button>
         </form>
       </div>
 
       <!-- Sugestões de Reconhecimento -->
       <div class="card">
         <div class="card-header">
-          <h2 class="card-title">💡 Sugestões de Reconhecimento</h2>
+          <h2 class="card-title with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Sugestões de Reconhecimento</span></h2>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 1rem;">
@@ -108,5 +109,7 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>
+

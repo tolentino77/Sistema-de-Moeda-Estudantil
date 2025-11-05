@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil do Professor - Sistema de Moeda Estudantil</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
       <nav>
         <ul>
-          <li><a href="perfil.html">Perfil</a></li>
-          <li><a href="enviar.html">Enviar Moedas</a></li>
-          <li><a href="extrato.html">Extrato</a></li>
-          <li><a href="alunos.html">Alunos</a></li>
-          <li><a href="../index.html">Sair</a></li>
+          <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Perfil</span></a></li>
+          <li><a href="enviar.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Enviar Moedas</span></a></li>
+          <li><a href="extrato.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Extrato</span></a></li>
+          <li><a href="alunos.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Alunos</span></a></li>
+          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
@@ -26,7 +27,7 @@
     <!-- GET /api/professors/professor/{id} -->
     <div class="balance-display">
       <div class="balance-label">Saldo Disponível para Distribuir</div>
-      <div class="balance-amount">750 🪙</div>
+      <div class="balance-amount">750 �Y�T</div>
       <p>De um total inicial de 1.000 moedas</p>
     </div>
 
@@ -72,9 +73,9 @@
         <h2 class="card-title">Ações Rápidas</h2>
       </div>
       <div class="grid grid-3">
-        <a href="enviar.html" class="btn btn-primary btn-block">Enviar Moedas</a>
-        <a href="alunos.html" class="btn btn-secondary btn-block">Ver Alunos</a>
-        <a href="extrato.html" class="btn btn-secondary btn-block">Ver Extrato</a>
+        <a href="enviar.html" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Enviar Moedas</span></a>
+        <a href="alunos.html" class="btn btn-secondary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Ver Alunos</span></a>
+        <a href="extrato.html" class="btn btn-secondary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Ver Extrato</span></a>
       </div>
     </div>
   </main>
@@ -84,5 +85,7 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>
+

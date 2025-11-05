@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastrar Vantagem - Sistema de Moeda Estudantil</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
       <nav>
         <ul>
-          <li><a href="perfil.html">Perfil</a></li>
-          <li><a href="vantagens.html">Minhas Vantagens</a></li>
-          <li><a href="cadastrar-vantagem.html">Nova Vantagem</a></li>
-          <li><a href="../index.html">Sair</a></li>
+          <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#briefcase"></use></svg><span>Perfil</span></a></li>
+          <li><a href="vantagens.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Minhas Vantagens</span></a></li>
+          <li><a href="cadastrar-vantagem.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Nova Vantagem</span></a></li>
+          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
@@ -63,7 +64,7 @@
         </div>
 
         <div class="alert alert-info">
-          <strong>💡 Dicas para criar vantagens atrativas:</strong>
+          <strong>Dicas para criar vantagens atrativas:</strong>
           <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
             <li>Seja claro sobre o que está sendo oferecido</li>
             <li>Defina um preço justo em moedas</li>
@@ -73,8 +74,8 @@
         </div>
 
         <div class="flex gap-2 mt-3">
-          <button type="submit" class="btn btn-primary">Cadastrar Vantagem</button>
-          <a href="vantagens.html" class="btn btn-secondary">Cancelar</a>
+          <button type="submit" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar Vantagem</span></button>
+          <a href="vantagens.html" class="btn btn-secondary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#x"></use></svg><span>Cancelar</span></a>
         </div>
       </form>
     </div>
@@ -85,5 +86,7 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>
+

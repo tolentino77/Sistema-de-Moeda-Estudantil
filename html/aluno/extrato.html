@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Extrato - Sistema de Moeda Estudantil</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo">🪙 Moeda Estudantil</a>
+      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
       <nav>
         <ul>
-          <li><a href="perfil.html">Perfil</a></li>
-          <li><a href="extrato.html">Extrato</a></li>
-          <li><a href="trocar-moedas.html">Trocar Moedas</a></li>
-          <li><a href="../index.html">Sair</a></li>
+          <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Perfil</span></a></li>
+          <li><a href="extrato.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Extrato</span></a></li>
+          <li><a href="trocar-moedas.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Trocar Moedas</span></a></li>
+          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
@@ -24,7 +25,7 @@
   <main>
     <div class="balance-display">
       <div class="balance-label">Saldo Atual</div>
-      <div class="balance-amount">1.250 🪙</div>
+      <div class="balance-amount">1.250 �Y�T</div>
     </div>
 
     <!-- GET /api/extracts/student/{id} -->
@@ -48,45 +49,24 @@
           <tbody>
             <tr>
               <td>15/01/2025 14:30</td>
-              <td><span style="color: var(--success-color);">✓ Recebimento</span></td>
+              <td><span style="color: var(--success-color);">Recebimento</span></td>
               <td>Recebido de Prof. Maria Santos - Excelente participação em aula</td>
-              <td style="color: var(--success-color); font-weight: 600;">+100 🪙</td>
-              <td>1.250 🪙</td>
+              <td style="color: var(--success-color); font-weight: 600;">+100 �Y�T</td>
+              <td>1.250 �Y�T</td>
             </tr>
             <tr>
-              <td>12/01/2025 10:15</td>
-              <td><span style="color: var(--danger-color);">✗ Troca</span></td>
-              <td>Troca por: Desconto 20% na Livraria Acadêmica</td>
-              <td style="color: var(--danger-color); font-weight: 600;">-50 🪙</td>
-              <td>1.150 🪙</td>
+              <td>12/01/2025 16:10</td>
+              <td><span style="color: var(--warning-color);">Troca</span></td>
+              <td>Resgate: Vale-refeição R$ 30</td>
+              <td style="color: var(--danger-color); font-weight: 600;">-100 �Y�T</td>
+              <td>1.150 �Y�T</td>
             </tr>
             <tr>
-              <td>10/01/2025 16:45</td>
-              <td><span style="color: var(--success-color);">✓ Recebimento</span></td>
-              <td>Recebido de Prof. João Oliveira - Trabalho excepcional</td>
-              <td style="color: var(--success-color); font-weight: 600;">+200 🪙</td>
-              <td>1.200 🪙</td>
-            </tr>
-            <tr>
-              <td>08/01/2025 09:20</td>
-              <td><span style="color: var(--success-color);">✓ Recebimento</span></td>
-              <td>Recebido de Prof. Maria Santos - Ajuda aos colegas</td>
-              <td style="color: var(--success-color); font-weight: 600;">+50 🪙</td>
-              <td>1.000 🪙</td>
-            </tr>
-            <tr>
-              <td>05/01/2025 11:00</td>
-              <td><span style="color: var(--danger-color);">✗ Troca</span></td>
-              <td>Troca por: Vale-refeição R$ 30,00</td>
-              <td style="color: var(--danger-color); font-weight: 600;">-100 🪙</td>
-              <td>950 🪙</td>
-            </tr>
-            <tr>
-              <td>03/01/2025 15:30</td>
-              <td><span style="color: var(--success-color);">✓ Recebimento</span></td>
-              <td>Recebido de Prof. Carlos Lima - Apresentação de seminário</td>
-              <td style="color: var(--success-color); font-weight: 600;">+150 🪙</td>
-              <td>1.050 🪙</td>
+              <td>10/01/2025 11:05</td>
+              <td><span style="color: var(--success-color);">Recebimento</span></td>
+              <td>Recebido de Prof. João Souza - Projeto de destaque</td>
+              <td style="color: var(--success-color); font-weight: 600;">+200 �Y�T</td>
+              <td>1.250 �Y�T</td>
             </tr>
           </tbody>
         </table>
@@ -99,5 +79,7 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+  <script src="../js/ui.js" defer></script>
 </body>
 </html>
+

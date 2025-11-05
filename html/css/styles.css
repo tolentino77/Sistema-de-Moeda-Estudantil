@@ -438,3 +438,41 @@ footer {
 .gap-3 {
   gap: 1.5rem;
 }
+/* --- Enhanced UI additions --- */
+.icon { width: 1.1em; height: 1.1em; vertical-align: -0.15em; }
+.icon-lg { width: 1.75rem; height: 1.75rem; }
+.icon-xl { width: 2.25rem; height: 2.25rem; }
+.with-icon { display: inline-flex; align-items: center; gap: .5rem; }
+
+/* Header polish */
+header { backdrop-filter: saturate(160%) blur(6px); background: color-mix(in srgb, var(--card-background) 88%, white); }
+.logo { display: inline-flex; align-items: center; gap: .5rem; }
+nav a { position: relative; }
+nav a::after { content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background: currentColor; transform:scaleX(0); transform-origin:left; transition: transform .25s ease; opacity:.6; }
+nav a:hover::after { transform:scaleX(1); }
+
+/* Card elevation + reveal */
+.card { transition: transform .2s ease, box-shadow .2s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.reveal { opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
+.reveal.reveal-in { opacity: 1; transform: translateY(0); }
+
+/* Buttons: ripple + subtle lift */
+.btn { position: relative; overflow: hidden; will-change: transform; }
+.btn:active { transform: translateY(1px); }
+.ripple { position:absolute; border-radius: 50%; background: rgba(255,255,255,.45); transform: scale(0); animation: ripple .45s ease-out; pointer-events:none; }
+@keyframes ripple { to { transform: scale(2.5); opacity: 0; } }
+
+/* Inputs: subtle inner shadow */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], select, textarea {
+  background: linear-gradient(0deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02)) var(--card-background);
+}
+
+/* Hero coin gradient */
+.balance-display { box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+.balance-display::after { content:""; position:absolute; inset:-20%; background: radial-gradient(100px 100px at 80% 10%, rgba(255,255,255,.35), transparent 60%); pointer-events:none; }
+.balance-label { font-weight: 600; opacity: .9; letter-spacing: .2px; }
+
+/* Page transition */
+@keyframes pageOut { to { opacity: 0; transform: scale(.995); filter: blur(1px); } }
+body.page-out { animation: pageOut .12s ease forwards; }
