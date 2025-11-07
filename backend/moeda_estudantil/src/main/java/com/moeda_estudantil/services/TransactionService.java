@@ -1,6 +1,8 @@
 package com.moeda_estudantil.services;
 
 import com.moeda_estudantil.application.dto.request.TransactionRequestDTO;
+import com.moeda_estudantil.application.dto.response.ProfessorResponseDTO;
+import com.moeda_estudantil.application.dto.response.StudentResponseDTO;
 import com.moeda_estudantil.application.dto.response.TransactionResponseDTO;
 import com.moeda_estudantil.domain.entity.Transaction;
 import com.moeda_estudantil.domain.converter.TransactionConverter;
@@ -28,6 +30,9 @@ public class TransactionService {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private EmailService emailService;
+
     // CREATE (Professor envia moedas para Aluno)
     @Transactional
     public TransactionResponseDTO create(TransactionRequestDTO dto) {
@@ -50,9 +55,38 @@ public class TransactionService {
         Transaction transaction = transactionConverter.toEntity(dto);
         Transaction savedTransaction = transactionRepository.save(transaction);
 
-        // TODO: Enviar email de notificação ao aluno
+        // Converter para DTO de resposta
+        TransactionResponseDTO response = transactionConverter.toResponseDTO(savedTransaction);
 
-        return transactionConverter.toResponseDTO(savedTransaction);
+        // Buscar informações completas do professor e aluno para envio de email
+        ProfessorResponseDTO professor = professorService.findById(dto.getProfessorId());
+        StudentResponseDTO student = studentService.findById(dto.getStudentId());
+
+        // Enviar emails de notificação
+        try {
+            // Email para o professor
+            emailService.sendProfessorNotification(
+                professor.getEmail(),
+                professor.getName(),
+                student.getName(),
+                dto.getCoinValue()
+            );
+
+            // Email para o aluno
+            emailService.sendStudentNotification(
+                student.getEmail(),
+                student.getName(),
+                professor.getName(),
+                dto.getCoinValue(),
+                dto.getMessage()
+            );
+        } catch (Exception e) {
+            // Log do erro mas não falha a transação
+            System.err.println("Erro ao enviar emails de notificação: " + e.getMessage());
+            // A transação já foi salva, então apenas logamos o erro
+        }
+
+        return response;
     }
 
     // READ ALL
