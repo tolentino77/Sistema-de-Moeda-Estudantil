@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - Sistema de Moeda Estudantil</title>
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml" />
@@ -11,14 +11,18 @@
   <header>
     <div class="header-container">
       <a href="../index.html" class="logo with-icon">
-        <svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg>
+        <svg class="icon icon-lg" aria-hidden="true">
+          <use href="../assets/icons.svg#coin"></use>
+        </svg>
         <span>Moeda Estudantil</span>
       </a>
       <nav>
         <ul>
           <li>
             <a href="../index.html" class="with-icon">
-              <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#home"></use></svg>
+              <svg class="icon" aria-hidden="true">
+                <use href="../assets/icons.svg#home"></use>
+              </svg>
               <span>Início</span>
             </a>
           </li>
@@ -30,11 +34,11 @@
   <main>
     <div class="card" style="max-width: 500px; margin: 3rem auto;">
       <div class="card-header text-center">
-        <h1 class="card-title">Login como aluno</h1>
+        <h1 class="card-title">Login como professor</h1>
         <p style="color: var(--text-secondary);">Entre com suas credenciais</p>
       </div>
 
-      <!-- Formulário: o envio é tratado por JS -->
+      <!-- Formulário tratado via JS -->
       <form id="loginForm" novalidate>
         <div class="form-group">
           <label for="email">Email</label>
@@ -49,7 +53,9 @@
         <div id="errorMessage" style="color: #b00020; margin-bottom: 1rem; display:none;"></div>
 
         <button type="submit" class="btn btn-primary btn-block with-icon">
-          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#login"></use></svg>
+          <svg class="icon" aria-hidden="true">
+            <use href="../assets/icons.svg#login"></use>
+          </svg>
           <span>Entrar</span>
         </button>
       </form>
@@ -57,11 +63,12 @@
       <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
         <p style="color: var(--text-secondary); margin-bottom: 1rem;">Não tem uma conta?</p>
         <div class="flex" style="flex-direction: column; gap: 0.5rem;">
-          <a href="../aluno/cadastro.html" class="btn btn-secondary btn-block with-icon">
-            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg>
-            <span>Cadastrar como Aluno</span>
+          <a href="../professor/cadastro.html" class="btn btn-secondary btn-block with-icon">
+            <svg class="icon" aria-hidden="true">
+              <use href="../assets/icons.svg#cap"></use>
+            </svg>
+            <span>Cadastrar como Professor</span>
           </a>
-         
         </div>
       </div>
     </div>
@@ -73,8 +80,7 @@
     </div>
   </footer>
 
-  <!-- mantém seu ui.js e inclui o novo auth.js -->
   <script src="../js/ui.js" defer></script>
-  <script src="../js/auth-student.js" defer></script>
+  <script src="../js/auth-professor.js" defer></script>
 </body>
 </html>

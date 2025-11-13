@@ -10,55 +10,73 @@
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg>
+        <span>Moeda Estudantil</span>
+      </a>
       <nav>
         <ul>
-          <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Perfil</span></a></li>
+          <li><a href="perfil.html" class="with-icon active"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Perfil</span></a></li>
           <li><a href="extrato.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Extrato</span></a></li>
           <li><a href="trocar-moedas.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Trocar Moedas</span></a></li>
-          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
+          <li><a href="#" id="logoutLink" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- GET /api/students/student/{id}/balance -->
+    <!-- SALDO -->
     <div class="balance-display">
       <div class="balance-label">Seu Saldo Atual</div>
-      <div class="balance-amount">1.250 �Y�T</div>
+      <div id="balanceAmount" class="balance-amount">Carregando...</div>
       <p>Moedas disponíveis para troca</p>
     </div>
 
-    <!-- GET /api/students/student/{id} -->
+    <!-- PERFIL -->
     <div class="card">
       <div class="card-header flex-between">
         <h2 class="card-title">Meu Perfil</h2>
-        <a href="editar.html" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#edit"></use></svg><span>Editar Perfil</span></a>
+        <a href="editar.html" class="btn btn-primary with-icon">
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#edit"></use></svg>
+          <span>Editar Perfil</span>
+        </a>
       </div>
 
-      <div class="profile-card">
-        <div class="profile-avatar">JS</div>
+      <div id="loading" style="margin:1rem;">Carregando informações...</div>
+      <div id="error" style="color:#b00020; display:none; margin:1rem;"></div>
+
+      <div id="profileCard" class="profile-card" style="display:none;">
+        <div class="profile-avatar" id="profileAvatar">--</div>
         <div class="profile-info">
-          <h1 class="profile-name">João Silva</h1>
-          <div class="profile-detail"><strong>Email:</strong> joao.silva@email.com</div>
-          <div class="profile-detail"><strong>CPF:</strong> 123.456.789-00</div>
-          <div class="profile-detail"><strong>RG:</strong> 12.345.678-9</div>
-          <div class="profile-detail"><strong>Curso:</strong> Engenharia de Software</div>
-          <div class="profile-detail"><strong>Instituição:</strong> Universidade Federal</div>
-          <div class="profile-detail"><strong>Endereço:</strong> Rua das Flores, 123 - Centro</div>
+          <h1 class="profile-name" id="profileName">—</h1>
+          <div class="profile-detail"><strong>Email:</strong> <span id="profileEmail">—</span></div>
+          <div class="profile-detail"><strong>CPF:</strong> <span id="profileCPF">—</span></div>
+          <div class="profile-detail"><strong>Curso:</strong> <span id="profileCourse">—</span></div>
+          <div class="profile-detail"><strong>Instituição:</strong> <span id="profileInstitution">—</span></div>
+          <div class="profile-detail"><strong>Endereço:</strong> <span id="profileAddress">—</span></div>
         </div>
       </div>
     </div>
 
+    <!-- AÇÕES RÁPIDAS -->
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">Ações Rápidas</h2>
       </div>
       <div class="grid grid-3">
-        <a href="extrato.html" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Ver Extrato</span></a>
-        <a href="trocar-moedas.html" class="btn btn-success btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Trocar Moedas</span></a>
-        <a href="editar.html" class="btn btn-secondary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#edit"></use></svg><span>Editar Dados</span></a>
+        <a href="extrato.html" class="btn btn-primary btn-block with-icon">
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg>
+          <span>Ver Extrato</span>
+        </a>
+        <a href="trocar-moedas.html" class="btn btn-success btn-block with-icon">
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg>
+          <span>Trocar Moedas</span>
+        </a>
+        <a href="editar.html" class="btn btn-secondary btn-block with-icon">
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#edit"></use></svg>
+          <span>Editar Dados</span>
+        </a>
       </div>
     </div>
   </main>
@@ -68,7 +86,8 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+
   <script src="../js/ui.js" defer></script>
+  <script src="../js/perfil.js" defer></script>
 </body>
 </html>
-

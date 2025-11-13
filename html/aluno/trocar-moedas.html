@@ -1,23 +1,107 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trocar Moedas - Sistema de Moeda Estudantil</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/aluno.css">
-  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/aluno.css" />
+  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml" />
+   <style>
+    /* 💎 Estilo aprimorado dos cards de vantagem */
+    .advantage-card {
+      background: var(--card-bg, #fff);
+      border: 1px solid var(--border-color, #ddd);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      height: 230px;
+      max-width: 240px;
+      margin: 0 auto;
+    }
+
+    .advantage-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .advantage-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+    }
+
+    .advantage-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-primary);
+    }
+
+    .advantage-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      height: 32px;
+      overflow: hidden;
+    }
+
+    .advantage-card .price {
+      font-weight: bold;
+      color: var(--primary-color, #0077ff);
+      margin-bottom: 0.8rem;
+    }
+
+    .advantage-card button {
+      background-color: var(--primary-color, #0077ff);
+      color: #fff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      font-size: 0.85rem;
+    }
+
+    .advantage-card button:hover {
+      background-color: var(--primary-color-hover, #005fcc);
+    }
+
+    .advantage-card button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* Ajuste no grid para deixar os cards bem distribuídos */
+    #advantagesContainer.grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+      justify-content: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg>
+        <span>Moeda Estudantil</span>
+      </a>
       <nav>
         <ul>
           <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Perfil</span></a></li>
           <li><a href="extrato.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Extrato</span></a></li>
-          <li><a href="trocar-moedas.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Trocar Moedas</span></a></li>
-          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
+          <li><a href="trocar-moedas.html" class="with-icon active"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Trocar Moedas</span></a></li>
+          <li><a href="#" id="logoutLink" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
@@ -26,7 +110,7 @@
   <main>
     <div class="balance-display">
       <div class="balance-label">Seu Saldo Disponível</div>
-      <div class="balance-amount">1.250 �Y�T</div>
+      <div id="balanceAmount" class="balance-amount">Carregando...</div>
     </div>
 
     <div class="card">
@@ -35,99 +119,10 @@
         <p style="color: var(--text-secondary);">Escolha uma vantagem para trocar suas moedas</p>
       </div>
 
-      <!-- GET /api/advantages/available -->
-      <div class="grid grid-3">
-        <!-- Vantagem 1 -->
-        <div class="advantage-card card">
-          <img src="../assets/img/bookstore.jpg" alt="Desconto Livraria" class="advantage-image">
-          <div class="advantage-content">
-            <h3 class="advantage-title">Desconto 20% Livraria</h3>
-            <p class="advantage-description">Desconto de 20% em qualquer compra na Livraria Acadêmica</p>
-            <div class="advantage-cost">50 �Y�T</div>
-            <!-- POST /api/exchanges/exchange -->
-            <form method="POST" action="/api/exchanges/exchange">
-              <input type="hidden" name="alunoId" value="1">
-              <input type="hidden" name="vantagemId" value="1">
-              <button type="submit" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Resgatar</span></button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Vantagem 2 -->
-        <div class="advantage-card card">
-          <img src="../assets/img/meal.jpg" alt="Vale-refeição" class="advantage-image">
-          <div class="advantage-content">
-            <h3 class="advantage-title">Vale-refeição R$ 30</h3>
-            <p class="advantage-description">Vale-refeição de R$ 30,00 para usar no restaurante universitário</p>
-            <div class="advantage-cost">100 �Y�T</div>
-            <form method="POST" action="/api/exchanges/exchange">
-              <input type="hidden" name="alunoId" value="1">
-              <input type="hidden" name="vantagemId" value="2">
-              <button type="submit" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Resgatar</span></button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Vantagem 3 -->
-        <div class="advantage-card card">
-          <img src="../assets/img/cinema.jpg" alt="Ingresso Cinema" class="advantage-image">
-          <div class="advantage-content">
-            <h3 class="advantage-title">2 Ingressos de Cinema</h3>
-            <p class="advantage-description">Dois ingressos para qualquer sessão no Cineplex</p>
-            <div class="advantage-cost">150 �Y�T</div>
-            <form method="POST" action="/api/exchanges/exchange">
-              <input type="hidden" name="alunoId" value="1">
-              <input type="hidden" name="vantagemId" value="3">
-              <button type="submit" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Resgatar</span></button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Vantagem 4 -->
-        <div class="advantage-card card">
-          <img src="../assets/img/gym.jpg" alt="Academia" class="advantage-image">
-          <div class="advantage-content">
-            <h3 class="advantage-title">Mensalidade Academia</h3>
-            <p class="advantage-description">50% de desconto na mensalidade da Academia Fitness</p>
-            <div class="advantage-cost">200 �Y�T</div>
-            <form method="POST" action="/api/exchanges/exchange">
-              <input type="hidden" name="alunoId" value="1">
-              <input type="hidden" name="vantagemId" value="4">
-              <button type="submit" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Resgatar</span></button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Vantagem 5 -->
-        <div class="advantage-card card">
-          <img src="../assets/img/elearning.jpg" alt="Curso Online" class="advantage-image">
-          <div class="advantage-content">
-            <h3 class="advantage-title">Curso Online Gratuito</h3>
-            <p class="advantage-description">Acesso gratuito a qualquer curso da plataforma EduTech</p>
-            <div class="advantage-cost">300 �Y�T</div>
-            <form method="POST" action="/api/exchanges/exchange">
-              <input type="hidden" name="alunoId" value="1">
-              <input type="hidden" name="vantagemId" value="5">
-              <button type="submit" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Resgatar</span></button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Vantagem 6 -->
-        <div class="advantage-card card">
-          <img src="../assets/img/laptop.jpg" alt="Notebook" class="advantage-image">
-          <div class="advantage-content">
-            <h3 class="advantage-title">Desconto 15% Notebook</h3>
-            <p class="advantage-description">15% de desconto na compra de notebooks na TechStore</p>
-            <div class="advantage-cost">500 �Y�T</div>
-            <form method="POST" action="/api/exchanges/exchange">
-              <input type="hidden" name="alunoId" value="1">
-              <input type="hidden" name="vantagemId" value="6">
-              <button type="submit" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Resgatar</span></button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <div id="loading" style="margin:1rem;">Carregando vantagens...</div>
+      <div id="error" style="display:none; color:#b00020; margin:1rem;"></div>
+      <div id="advantagesContainer" class="grid grid-3" style="display:none;"></div>
+      <div id="noAdvantages" style="display:none; padding:1rem; color:var(--text-secondary);">Nenhuma vantagem disponível no momento.</div>
     </div>
   </main>
 
@@ -136,6 +131,8 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+
   <script src="../js/ui.js" defer></script>
+  <script src="../js/trocar-moedas.js" defer></script>
 </body>
 </html>

@@ -10,13 +10,16 @@
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg>
+        <span>Moeda Estudantil</span>
+      </a>
       <nav>
         <ul>
           <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"></use></svg><span>Perfil</span></a></li>
-          <li><a href="extrato.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Extrato</span></a></li>
+          <li><a href="extrato.html" class="with-icon active"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Extrato</span></a></li>
           <li><a href="trocar-moedas.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#exchange"></use></svg><span>Trocar Moedas</span></a></li>
-          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
+          <li><a href="#" id="logoutLink" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
@@ -25,51 +28,38 @@
   <main>
     <div class="balance-display">
       <div class="balance-label">Saldo Atual</div>
-      <div class="balance-amount">1.250 �Y�T</div>
+      <div id="balanceAmount" class="balance-amount">Carregando...</div>
     </div>
 
-    <!-- GET /api/extracts/student/{id} -->
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title">Histórico de Transações</h2>
-        <p style="color: var(--text-secondary);">Todas as suas movimentações de moedas</p>
+        <h2 class="card-title">Histórico de Trocas</h2>
+        <p style="color: var(--text-secondary);">Veja todas as vantagens que você trocou</p>
       </div>
 
-      <div class="table-container">
+      <div id="loading" style="margin:1rem;">Carregando informações...</div>
+      <div id="error" style="color:#b00020; display:none; margin:1rem;"></div>
+
+      <div id="transactionsContainer" class="table-container" style="display:none;">
         <table>
           <thead>
             <tr>
               <th>Data</th>
-              <th>Tipo</th>
+              <th>Vantagem</th>
               <th>Descrição</th>
-              <th>Valor</th>
-              <th>Saldo</th>
+              <th>Valor (moedas)</th>
+              <th>Status</th>
+              <th>Código de Resgate</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>15/01/2025 14:30</td>
-              <td><span style="color: var(--success-color);">Recebimento</span></td>
-              <td>Recebido de Prof. Maria Santos - Excelente participação em aula</td>
-              <td style="color: var(--success-color); font-weight: 600;">+100 �Y�T</td>
-              <td>1.250 �Y�T</td>
-            </tr>
-            <tr>
-              <td>12/01/2025 16:10</td>
-              <td><span style="color: var(--warning-color);">Troca</span></td>
-              <td>Resgate: Vale-refeição R$ 30</td>
-              <td style="color: var(--danger-color); font-weight: 600;">-100 �Y�T</td>
-              <td>1.150 �Y�T</td>
-            </tr>
-            <tr>
-              <td>10/01/2025 11:05</td>
-              <td><span style="color: var(--success-color);">Recebimento</span></td>
-              <td>Recebido de Prof. João Souza - Projeto de destaque</td>
-              <td style="color: var(--success-color); font-weight: 600;">+200 �Y�T</td>
-              <td>1.250 �Y�T</td>
-            </tr>
+          <tbody id="transactionsBody">
+            <!-- Linhas geradas dinamicamente -->
           </tbody>
         </table>
+      </div>
+
+      <div id="noTransactions" style="display:none; padding:1rem; color:var(--text-secondary);">
+        Nenhuma troca realizada até o momento.
       </div>
     </div>
   </main>
@@ -79,7 +69,8 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+
   <script src="../js/ui.js" defer></script>
+  <script src="../js/extrato.js" defer></script>
 </body>
 </html>
-
