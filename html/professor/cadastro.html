@@ -28,7 +28,7 @@
       </div>
 
       <!-- POST /api/professors/professor -->
-      <form method="POST" action="/api/professors/professor">
+      <form id="registerProfessorForm">
         <div class="grid grid-2">
           <div class="form-group">
             <label for="nome">Nome Completo *</label>
@@ -71,12 +71,14 @@
           </div>
         </div>
 
+        <div id="formMessage" style="display:none; margin-top: .5rem;"></div>
+
         <div class="alert alert-info">
           <strong>Informação:</strong> Ao se cadastrar, você receberá automaticamente 1.000 moedas para distribuir aos seus alunos.
         </div>
 
         <div class="flex gap-2 mt-3">
-          <button type="submit" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar</span></button>
+          <button id="submitBtn" type="submit" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar</span></button>
           <a href="../login/index.html" class="btn btn-secondary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#login"></use></svg><span>Já tenho conta</span></a>
         </div>
       </form>
@@ -89,6 +91,7 @@
     </div>
   </footer>
   <script src="../js/ui.js" defer></script>
+  <script src="../js/professor-cadastro.js" defer></script>
 </body>
 </html>
 
