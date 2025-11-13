@@ -148,32 +148,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Função de troca de vantagem
-  async function trocarVantagem(vantagem) {
-    const studentId = localStorage.getItem('studentId');
-    if (!studentId) {
-      alert('Sessão expirada. Faça login novamente.');
-      window.location.href = '../login.html';
-      return;
-    }
+async function trocarVantagem(vantagem) {
+  const studentId = localStorage.getItem('studentId');
+  const studentName = localStorage.getItem('studentName');
+  const studentEmail = localStorage.getItem('studentEmail');
 
-    if (!confirm(`Deseja trocar ${vantagem.coinCost} moedas por "${vantagem.name}"?`)) return;
-
-    try {
-      const resp = await fetchJson(`${API_BASE}exchanges/exchange`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studentId, advantageId: vantagem.id }),
-      });
-
-      if (!resp.ok) throw new Error('Erro ao processar troca.');
-
-      alert('Troca realizada com sucesso!');
-      location.reload();
-    } catch (err) {
-      console.error('Erro ao realizar troca:', err);
-      alert('Erro ao realizar troca. Tente novamente.');
-    }
+  if (!studentId) {
+    alert('Sessão expirada. Faça login novamente.');
+    window.location.href = '../login.html';
+    return;
   }
+
+  if (!confirm(`Deseja trocar ${vantagem.coinCost} moedas por "${vantagem.name}"?`)) return;
+
+  try {
+    const resp = await fetchJson(`${API_BASE}exchanges/exchange`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ studentId, advantageId: vantagem.id }),
+    });
+
+    if (!resp.ok) throw new Error('Erro ao processar troca.');
+
+    alert('Troca realizada com sucesso!');
+
+    // === 🔽 ENVIO DO E-MAIL DE CONFIRMAÇÃO 🔽 ===
+    await fetch(`${API_BASE}emails/send-confirmation`, { // <-- coloque o endpoint real do backend
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: studentEmail,             // e-mail do aluno
+        name: studentName,            // nome do aluno
+        product: vantagem.name,       // nome do produto/benefício
+      }),
+    });
+
+    // mostrar mensagem para o usuário
+    alert('Um e-mail de confirmação foi enviado para o seu endereço cadastrado.');
+
+    location.reload();
+  } catch (err) {
+    console.error('Erro ao realizar troca:', err);
+    alert('Erro ao realizar troca. Tente novamente.');
+  }
+}
 
   // Inicialização
   async function init() {
