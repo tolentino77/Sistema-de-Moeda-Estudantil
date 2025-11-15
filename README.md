@@ -8,10 +8,10 @@ O Back-end está completo, implementando a lógica central de transações, cont
 
 | Integrantes | Professores responsáveis |
 | --- | --- |
-| João  Vitor Tolentino | João Paulo Carneiro Aramuni (orientador) |
-| Thiago Lacerda |
-| Victhor Ribeiro |
-| Gabriel Reis |
+| João  Vitor Tolentino ([@tolentino77](https://github.com/tolentino77)) | João Paulo Carneiro Aramuni ([@joaopauloaramuni](https://github.com/joaopauloaramuni)) |
+| Thiago Lacerda ([@thivizinx](https://github.com/thivizinx)) |
+| Victhor Ribeiro ([@victhorribeiro](https://github.com/victhorribeiro)) |
+| Gabriel Reis ([@ReisBiel23](https://github.com/ReisBiel23)) |
 
 ## 📅 Gerenciamento do Projeto
 
@@ -109,4 +109,10 @@ Os testes automatizados e a verificação de código foram realizados nas seguin
 
 # Scipts de Build/Verificação
 # No diretório do Next.js (IDEAL)
-npm run build 
+npm run build
+
+```
+
+
+
+
