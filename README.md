@@ -1,78 +1,112 @@
 # 💰 Sistema de Moeda Estudantil (Release 2 - MVP)
 
-Este repositório contém a **segunda release (MVP)** do **Sistema de Moeda Estudantil**, desenvolvido na disciplina **Laboratório de Desenvolvimento de Software**, sob orientação do professor **João Paulo Carneiro Aramuni**.
+Este repositório contém a **segunda release (MVP)** do **Sistema de Moeda Estudantil**, com o objetivo de estimular o reconhecimento do mérito estudantil por meio de uma moeda virtual distribuída por professores e trocada por alunos em empresas parceiras.
+
+O Back-end está completo, implementando a lógica central de transações, controle de saldos, estoque de recompensas e notificação por e-mail, conforme os requisitos do projeto.
+
+## Participantes
+
+| Integrantes | Professores responsáveis |
+| --- | --- |
+| João  Vitor Tolentino | João Paulo Carneiro Aramuni (orientador) |
+| Thiago Lacerda |
+| Victhor Ribeiro |
+| Gabriel Reis |
+
+## 📅 Gerenciamento do Projeto
+
+O projeto é gerenciado por Sprints, e a **Release 2** marcou a conclusão do MVP funcional (API) e a criação dos protótipos visuais completos, conforme o cronograma do laboratório.
+
+| Sprint | Foco Principal | Status |
+| --- | --- | --- |
+| **R1 (Modelagem)** | Modelagem UML (Casos de Uso, Classes, Componentes, ER) e CRUDs Iniciais. | ✅ Concluída |
+| **LAB04S01** | Envio de Moedas, Consultas de Extrato e E-mails de Notificação (Prof./Aluno). | ✅ Concluída |
+| **LAB04S02** | Cadastro de Vantagens (Empresa), Listagem (Aluno) e **Diagramas de Sequências (Envio/Cadastro)**. | ✅ Concluída |
+| **LAB04S03** | Troca de Vantagens (Aluno) e **Diagramas de Sequências (Troca)**. | ✅ Concluída |
 
 ---
 
-## 🎯 Objetivo da Release 2
+## 💻 Funcionalidades Chave do MVP (API - Spring Boot)
 
-[cite_start]A principal meta desta fase foi a **implementação completa das regras de negócio** e dos **serviços de back-end** que suportam os casos de uso centrais do sistema (distribuição e troca de moedas), transformando a modelagem da R1 em um **MVP funcional (Minimum Viable Product)**[cite: 34].
+O core do sistema (API) em Spring Boot (Java 17) implementa todas as regras de negócio:
 
----
-
-## 🧩 Funcionalidades Implementadas (Core MVP)
-
-Nesta release, as funcionalidades principais e regras de negócio foram concretizadas na API (Spring Boot):
-
-* **Autenticação e Perfis:** Estrutura para Login para Aluno, Professor e Empresa Parceira.
-* **Módulos de Cadastro (CRUD Completo na API):**
-    * Cadastro de **Aluno** (com validações de unicidade de CPF, RG e E-mail).
-    * Cadastro de **Professor** (com saldo inicial de **1.000 moedas por semestre**, sendo este **acumulável**, e com validações).
-    * Cadastro de **Empresa Parceira** e **Vantagem/Recompensa** (com validações, descrição, foto e controle de estoque).
-* **Transação (Professor -> Aluno):**
-    * **Distribuição de moedas** com validação de saldo do professor e registro do motivo (mensagem obrigatória).
-    * Notificação automática por **e-mail** para o aluno (moedas recebidas) e para o professor (confirmação de envio).
-* **Troca de Moedas (Aluno -> Vantagem):**
-    * **Resgate de Vantagens** (Coin Exchange) com validação de saldo do aluno e **controle de estoque**.
-    * Dedução de saldo, geração de **Código de Resgate** e decremento do estoque.
-    * Envio de **e-mail de cupom ao aluno** e **notificação ao parceiro** (ambos com o código de resgate para conferência).
-* **Consultas:**
-    * Endpoints para **Consulta de Saldo** e **Extrato** detalhado (Aluno e Professor).
-    * Listagem de **Vantagens Disponíveis** (com estoque) para troca.
+| Funcionalidade | Detalhes da Regra de Negócio | Endpoints Relevantes |
+| --- | --- | --- |
+| **Início de Saldo** | Professores recebem **1.000 moedas** a cada semestre, sendo o saldo **acumulável**. | `POST /api/professors/professor` |
+| **Enviar Moedas** | Professor envia moedas com validação de saldo e motivo (mensagem obrigatória). | `POST /api/transactions/transaction` |
+| **Notificação de Envio** | Aluno é notificado por **e-mail** ao receber moedas. Professor recebe confirmação. | Serviço `EmailService` |
+| **Cadastrar Vantagem** | Empresa parceira cadastra Vantagens com descrição, custo e controle de **estoque**. | `POST /api/advantages/advantage` |
+| **Trocar Moedas** | Aluno resgata vantagem com saldo e estoque validados. Gera **código de resgate**. | `POST /api/exchanges/exchange` |
+| **Notificação de Troca** | E-mail de **cupom/código de resgate** enviado ao aluno e notificação enviada ao parceiro (ambos com o código). | Serviço `CoinExchangeService` |
+| **Consultar Extrato** | Consulta do saldo total e extrato de transações/trocas para Alunos e Professores. | `GET /api/extracts/*` |
 
 ---
 
-## 📚 Escopo da Release 2
+## 🛠 Guia de Instalação e Execução - Ambiente Dev
 
-* **Modelagem (R2 - Sequências):** Criação e atualização dos **Diagramas de Sequências** para os fluxos de Envio de Moeda, Cadastro de Vantagem e Troca de Moeda.
-* **Implementação Back-end:** Finalização de todos os Services e Controllers (CRUDs e regras de negócio) para as entidades principais.
-* **Comunicação:** Integração do **EmailService** com Spring Boot Mail para notificações automáticas.
-* **Back-end Robusto:** Implementação de validações de dados (Jakarta Validation) e tratamento de exceções básicas (saldo insuficiente, item esgotado).
-* **Front-end (Protótipo):** Entrega de todas as telas-chave do sistema como protótipo estático em HTML/CSS puro, simulando o fluxo de navegação e as funcionalidades completas do MVP (Aluno, Professor, Empresa).
-* **Fundação Next.js:** Estrutura inicial do projeto *IDEAL* em Next.js/Tailwind CSS para o desenvolvimento da interface final (R3).
+Este guia foca na execução do **Back-end (API)** e na visualização dos **Protótipos Estáticos** (HTML/CSS) produzidos.
 
----
+### 1️⃣ Pré-requisitos  
 
-## 🧠 Tecnologias Utilizadas
+- [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html) (Versão **17+**)  
+- [Maven](https://maven.apache.org/download.cgi) (ou use o `mvnw` incluso)  
+- [Docker](https://www.docker.com/products/docker-desktop) e [Docker Compose](https://docs.docker.com/compose/install/) (Para o Banco de Dados PostgreSQL)
+- **Opcional:** Node.js (LTS) para rodar o Front-end `IDEAL`.
 
-* **Backend:** Java 17 com Spring Boot 3.x
-    * **Dependências Chave:** Spring Boot Starter Web, Data JPA, Validation, Actuator, **Starter Mail**.
-    * **Persistência:** JPA / Hibernate.
-* **Banco de Dados:** PostgreSQL (Docker Compose para ambiente de dev).
-* **Frontend (Protótipo Funcional):** HTML/CSS simples (`/html`).
-* **Frontend (Estrutura Moderna):** Next.js 16 (IDEAL project) e Tailwind CSS.
-* **Infraestrutura:** Docker e Docker Compose, Arquivo de deploy para Render.com (Backend).
-* **Padrões de Projeto:** Arquitetura MVC, DTOs, Converters e Services.
+### 2️⃣ Configuração e Execução do Back-end (API)
 
----
+📂 **Caminho do projeto:** `./backend/moeda_estudantil`
 
-## 🗓️ Próximas Sprints (R3 e Além)
+#### ▶️ Iniciar Banco de Dados (PostgreSQL)
 
-| Sprint | Foco Principal |
-|--------|----------------|
-| **Sprint 03 (R2 Concluída)** | Entrega do MVP de Back-end (API) e Protótipo de Design (HTML/CSS) |
-| **Sprint 04 (Início R3)** | Desenvolvimento da Interface de Usuário (Next.js/React) |
-| **Sprint 05 (R3)** | Integração Front-end-Back-end e Testes E2E |
+Execute o Docker Compose na pasta do back-end para levantar o banco de dados:
 
-📅 **Cronograma oficial:**
-[Repositório da Disciplina - Cronograma](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/tree/main/CRONOGRAMA)
+```sh
+cd backend/moeda_estudantil
+docker-compose up -d postgres
 
----
+```
 
-## 👨‍🏫 Professor
-**João Paulo Carneiro Aramuni**
+### 🚀 Iniciar a API Spring Boot
+A API será inicializada na porta 8080, e a base URL será http://localhost:8080/api.
 
----
+```sh
 
-## 🧑‍💻 Curso
-**Engenharia de Software - 4º Período**
+# Na pasta ./backend/moeda_estudantil:
+./mvnw spring-boot:run
+
+```
+
+### 🌐 Protótipos Visuais (HTML/CSS)
+Os protótipos estáticos representam a interface completa do sistema, simulando o fluxo da Release 2.
+
+| Perfil | Fluxo Principal | Arquivo de Acesso |
+| --- | --- | --- |
+| Aluno | Consultar Perfil e saldo| `./html/aluno/perfil.html` |
+| Aluno | Visualizar e Resgatar Vantagens | `./html/aluno/trocar-moedas.html` |
+| Professor | Enviar Moedas para Aluno | `./html/professor/enviar.html` |
+| Empresa | Cadastro de Nova Vantagem | `./html/empresa/cadastrar-vantagem.html` |
+| Geral | Login e Seleção de Perfil | `./html/login/index.html` |
+
+### 🔨 Modelagem Documentada (R1 e R2)
+A modelagem completa do sistema pode ser consultada na pasta /docs:
+
+- Diagrama de Classes & ER (Inclui Aluno, Professor, Empresa, Vantagem, etc.)
+
+- Diagrama de Componentes (Visão geral da arquitetura MVC)
+
+- Diagramas de Sequência (Fluxos de Autenticação, Envio de Moedas, Cadastro e Troca de Vantagens)
+
+
+### 🧪 Testes
+Os testes automatizados e a verificação de código foram realizados nas seguintes camadas:
+
+- Testes Unitários (Java): Cobertura das regras de negócio e serviços críticos (ex: dedução de saldo, validação de estoque). Arquivos de teste no diretório src/test/java.
+
+- Verificação de Código (Next.js/TS): A etapa de build (npm run build) executa a verificação de tipos com TypeScript e qualidade de código com ESLint.
+
+```sh
+
+# Scipts de Build/Verificação
+# No diretório do Next.js (IDEAL)
+npm run build 
