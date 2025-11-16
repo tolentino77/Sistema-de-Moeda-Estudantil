@@ -5,71 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil da Empresa - Sistema de Moeda Estudantil</title>
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
+  <script src="../js/perfil-empresa.js" defer></script>
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg" aria-hidden="true">
+          <use href="../assets/icons.svg#coin"></use>
+        </svg>
+        <span>Moeda Estudantil</span>
+      </a>
+
       <nav>
         <ul>
-          <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#briefcase"></use></svg><span>Perfil</span></a></li>
-          <li><a href="vantagens.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Minhas Vantagens</span></a></li>
-          <li><a href="cadastrar-vantagem.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Nova Vantagem</span></a></li>
-          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
+          <li><a href="perfil.html" class="with-icon">
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#briefcase"></use></svg>
+            <span>Perfil</span></a>
+          </li>
+
+          <li><a href="vantagens.html" class="with-icon">
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg>
+            <span>Minhas Vantagens</span>
+          </a></li>
+
+          <li><a href="cadastrar-vantagem.html" class="with-icon">
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg>
+            <span>Nova Vantagem</span>
+          </a></li>
+
+          <li><a href="../index.html" class="with-icon">
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg>
+            <span>Sair</span>
+          </a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- GET /api/companies/company/{id} -->
+
+    <!-- PERFIL DA EMPRESA -->
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">Perfil da Empresa</h2>
       </div>
 
       <div class="profile-card">
-        <div class="profile-avatar">TS</div>
+        <div id="avatar" class="profile-avatar">--</div>
+
         <div class="profile-info">
-          <h1 class="profile-name">TechStore</h1>
-          <div class="profile-detail"><strong>Razão Social:</strong> TechStore Comércio de Eletrônicos Ltda</div>
-          <div class="profile-detail"><strong>CNPJ:</strong> 12.345.678/0001-90</div>
-          <div class="profile-detail"><strong>Email:</strong> contato@techstore.com.br</div>
+          <h1 id="empresaName" class="profile-name">Carregando...</h1>
+          <div class="profile-detail"><strong>Razão Social:</strong> <span id="empresaSocial">Carregando...</span></div>
+          <div class="profile-detail"><strong>CNPJ:</strong> <span id="empresaCnpj">Carregando...</span></div>
+          <div class="profile-detail"><strong>Email:</strong> <span id="empresaEmail">Carregando...</span></div>
         </div>
       </div>
     </div>
 
+    <!-- ESTATÍSTICAS -->
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">Estatísticas</h2>
       </div>
+
       <div class="grid grid-3">
         <div class="card" style="text-align: center;">
-          <div style="font-size: 2.5rem; color: var(--primary-color); font-weight: 700;">8</div>
+          <div id="statsVantagens" style="font-size: 2.5rem; color: var(--primary-color); font-weight: 700;">0</div>
           <div style="color: var(--text-secondary);">Vantagens Cadastradas</div>
         </div>
+
         <div class="card" style="text-align: center;">
-          <div style="font-size: 2.5rem; color: var(--success-color); font-weight: 700;">142</div>
+          <div id="statsResgates" style="font-size: 2.5rem; color: var(--success-color); font-weight: 700;">0</div>
           <div style="color: var(--text-secondary);">Resgates Realizados</div>
         </div>
+
         <div class="card" style="text-align: center;">
-          <div style="font-size: 2.5rem; color: var(--warning-color); font-weight: 700;">4.8</div>
+          <div id="statsRating" style="font-size: 2.5rem; color: var(--warning-color); font-weight: 700;">0</div>
           <div style="color: var(--text-secondary);">Avaliação Média</div>
         </div>
       </div>
     </div>
 
+    <!-- AÇÕES RÁPIDAS -->
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">Ações Rápidas</h2>
       </div>
+
       <div class="grid grid-3">
-        <a href="cadastrar-vantagem.html" class="btn btn-primary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar Nova Vantagem</span></a>
-        <a href="vantagens.html" class="btn btn-secondary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Ver Minhas Vantagens</span></a>
-        <a href="relatorios.html" class="btn btn-secondary btn-block with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg><span>Relatórios</span></a>
+        <a href="cadastrar-vantagem.html" class="btn btn-primary btn-block with-icon">
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg>
+          <span>Cadastrar Nova Vantagem</span>
+        </a>
+
+        <a href="vantagens.html" class="btn btn-secondary btn-block with-icon">
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg>
+          <span>Ver Minhas Vantagens</span>
+        </a>
+
+        <a href="relatorios.html" class="btn btn-secondary btn-block with-icon">
+          <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chart"></use></svg>
+          <span>Relatórios</span>
+        </a>
       </div>
     </div>
+
   </main>
 
   <footer>
@@ -77,7 +118,5 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
-  <script src="../js/ui.js" defer></script>
 </body>
 </html>
-
