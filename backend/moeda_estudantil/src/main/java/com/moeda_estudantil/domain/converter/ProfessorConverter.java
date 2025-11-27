@@ -36,6 +36,7 @@ public class ProfessorConverter {
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setEmail(entity.getEmail());
+        dto.setPassword(entity.getPassword()); // INCLUINDO PASSWORD para validação de login
         dto.setSocialId(entity.getSocialId());
         dto.setDepartment(entity.getDepartment());
         dto.setScore(entity.getScore());

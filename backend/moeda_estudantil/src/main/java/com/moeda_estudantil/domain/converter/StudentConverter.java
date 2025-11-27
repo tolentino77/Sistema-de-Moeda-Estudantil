@@ -38,6 +38,7 @@ public class StudentConverter {
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setEmail(entity.getEmail());
+        dto.setPassword(entity.getPassword()); // INCLUINDO PASSWORD para validação de login
         dto.setSocialId(entity.getSocialId());
         dto.setDocument(entity.getDocument());
         dto.setAddress(entity.getAddress());
