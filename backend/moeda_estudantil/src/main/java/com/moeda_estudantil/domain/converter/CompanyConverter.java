@@ -29,6 +29,7 @@ public class CompanyConverter {
         dto.setCompanyName(entity.getCompanyName());
         dto.setCompanyDocument(entity.getCompanyDocument());
         dto.setEmail(entity.getEmail());
+        dto.setPassword(entity.getPassword()); // INCLUINDO PASSWORD para validação de login
         dto.setRegisterDate(entity.getRegisterDate());
 
         return dto;

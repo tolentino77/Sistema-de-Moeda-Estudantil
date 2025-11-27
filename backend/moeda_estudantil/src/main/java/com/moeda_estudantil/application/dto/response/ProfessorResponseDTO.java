@@ -7,6 +7,7 @@ public class ProfessorResponseDTO {
     private Long id;
     private String name;
     private String email;
+    private String password; // ADICIONADO para validação de login
     private String socialId;
     private String department;
     private Integer score;
@@ -17,11 +18,13 @@ public class ProfessorResponseDTO {
     // Constructors
     public ProfessorResponseDTO() {}
 
-    public ProfessorResponseDTO(Long id, String name, String email, String socialId, String department,
-                                Integer score, Long institutionId, String institutionName, LocalDateTime registerDate) {
+    public ProfessorResponseDTO(Long id, String name, String email, String password, String socialId,
+                                String department, Integer score, Long institutionId,
+                                String institutionName, LocalDateTime registerDate) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.socialId = socialId;
         this.department = department;
         this.score = score;
@@ -53,6 +56,14 @@ public class ProfessorResponseDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSocialId() {

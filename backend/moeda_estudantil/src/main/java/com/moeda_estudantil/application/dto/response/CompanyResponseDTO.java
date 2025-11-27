@@ -9,18 +9,20 @@ public class CompanyResponseDTO {
     private String companyName;
     private String companyDocument;
     private String email;
+    private String password; // ADICIONADO para validação de login
     private LocalDateTime registerDate;
 
     // Constructors
     public CompanyResponseDTO() {}
 
     public CompanyResponseDTO(Long id, String companyNickname, String companyName, String companyDocument,
-                              String email, LocalDateTime registerDate) {
+                              String email, String password, LocalDateTime registerDate) {
         this.id = id;
         this.companyNickname = companyNickname;
         this.companyName = companyName;
         this.companyDocument = companyDocument;
         this.email = email;
+        this.password = password;
         this.registerDate = registerDate;
     }
 
@@ -63,6 +65,14 @@ public class CompanyResponseDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public LocalDateTime getRegisterDate() {
