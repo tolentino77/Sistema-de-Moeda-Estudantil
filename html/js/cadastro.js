@@ -1,11 +1,11 @@
 // cadastro.js
 // Faz o POST para criar um aluno usando a base API:
-// https://sistema-de-moeda-estudantil-2.onrender.com/api/api/
+// https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/
 // Endpoint esperado: POST /students/student
 // Observação: bom mapear os campos conforme a sua API. Abaixo envio os campos mais prováveis:
 // { name, email, password, socialId, document, address, course, institutionId }
 
-const API_BASE = 'https://sistema-de-moeda-estudantil-2.onrender.com/api/api/';
+const API_BASE = 'https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('registerForm');

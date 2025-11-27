@@ -1,8 +1,8 @@
 // cadastro-empresa.js
 // POST para criar empresa no endpoint correto esperado pela API:
-// POST https://sistema-de-moeda-estudantil-2.onrender.com/api/api/companies/company
+// POST https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/companies/company
 
-const API_BASE = 'https://sistema-de-moeda-estudantil-2.onrender.com/api/api/';
+const API_BASE = 'https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('registerCompanyForm');

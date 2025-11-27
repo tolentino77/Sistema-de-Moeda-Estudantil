@@ -1,7 +1,7 @@
 // professor-enviar.js
 // Envia moedas para alunos via /transactions/transaction e preenche lista de alunos
 
-const API_BASE = 'https://sistema-de-moeda-estudantil-2.onrender.com/api/api/';
+const API_BASE = 'https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/';
 
 document.addEventListener('DOMContentLoaded', () => {
   const professorId = localStorage.getItem('professorId');

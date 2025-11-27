@@ -1,7 +1,7 @@
 // professor-extrato.js
 // Lista transações feitas pelo professor e mostra saldo/estatísticas
 
-const API_BASE = 'https://sistema-de-moeda-estudantil-2.onrender.com/api/api/';
+const API_BASE = 'https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/';
 
 document.addEventListener('DOMContentLoaded', () => {
   const professorId = localStorage.getItem('professorId');
