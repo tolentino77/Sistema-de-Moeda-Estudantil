@@ -7,7 +7,11 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="has-video-bg">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="../assets/img/andandopraca.mp4" type="video/mp4">
+  </video>
+
   <header>
     <div class="header-container">
       <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
@@ -26,7 +30,7 @@
   <main>
     <div class="balance-display">
       <div class="balance-label">Seu Saldo Disponível</div>
-      <div class="balance-amount">750 �Y�T</div>
+      <div class="balance-amount">750</div>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 2rem;">
@@ -110,6 +114,7 @@
     </div>
   </footer>
   <script src="../js/ui.js" defer></script>
+  <script src="../js/professor-enviar.js" defer></script>
 </body>
 </html>
 

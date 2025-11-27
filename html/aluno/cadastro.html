@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="bg-pucfundo">
   <header>
     <div class="header-container">
       <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
@@ -27,8 +27,10 @@
         <p style="color: var(--text-secondary);">Preencha seus dados para criar sua conta</p>
       </div>
 
-      <!-- POST /api/students/student -->
-      <form method="POST" action="/api/students/student">
+      <!-- Agora o envio é tratado por JS (js/cadastro.js) -->
+      <form id="registerForm" novalidate>
+        <div id="formMessage" style="display:none; margin-bottom:1rem;"></div>
+
         <div class="grid grid-2">
           <div class="form-group">
             <label for="nome">Nome Completo *</label>
@@ -82,7 +84,9 @@
         </div>
 
         <div class="flex gap-2 mt-3">
-          <button type="submit" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar</span></button>
+          <button id="submitBtn" type="submit" class="btn btn-primary with-icon">
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar</span>
+          </button>
           <a href="../login/index.html" class="btn btn-secondary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#login"></use></svg><span>Já tenho conta</span></a>
         </div>
       </form>
@@ -95,6 +99,6 @@
     </div>
   </footer>
   <script src="../js/ui.js" defer></script>
+  <script src="../js/cadastro.js" defer></script>
 </body>
 </html>
-

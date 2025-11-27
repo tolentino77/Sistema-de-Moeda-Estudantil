@@ -7,10 +7,15 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="bg-fundopuc">
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg" aria-hidden="true">
+          <use href="../assets/icons.svg#coin"></use>
+        </svg>
+        <span>Moeda Estudantil</span>
+      </a>
       <nav>
         <ul>
           <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#briefcase"></use></svg><span>Perfil</span></a></li>
@@ -29,37 +34,36 @@
         <p style="color: var(--text-secondary);">Crie uma vantagem atrativa para os estudantes</p>
       </div>
 
-      <!-- POST /api/advantages/advantage -->
-      <form method="POST" action="/api/advantages/advantage">
-        <input type="hidden" name="empresaId" value="1">
+      <form id="formVantagem">
+        <input type="hidden" id="empresaId">
 
         <div class="form-group">
           <label for="nome">Nome da Vantagem *</label>
-          <input type="text" id="nome" name="nome" placeholder="Ex: Desconto 20% em Notebooks" required>
+          <input type="text" id="nome" placeholder="Ex: Desconto 20% em Notebooks" required>
         </div>
 
         <div class="form-group">
           <label for="descricao">Descrição Detalhada *</label>
-          <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva os detalhes da vantagem, condições de uso, validade, etc." required></textarea>
+          <textarea id="descricao" rows="4" placeholder="Descreva os detalhes da vantagem, condições de uso, validade, etc." required></textarea>
         </div>
 
         <div class="grid grid-2">
           <div class="form-group">
             <label for="custo">Custo em Moedas *</label>
-            <input type="number" id="custo" name="custo" min="1" placeholder="Ex: 100" required>
+            <input type="number" id="custo" min="1" placeholder="Ex: 100" required>
             <small style="color: var(--text-secondary);">Quantidade de moedas necessárias para resgatar</small>
           </div>
 
           <div class="form-group">
             <label for="quantidade">Quantidade Disponível *</label>
-            <input type="number" id="quantidade" name="quantidade" min="1" placeholder="Ex: 50" required>
+            <input type="number" id="quantidade" min="1" placeholder="Ex: 50" required>
             <small style="color: var(--text-secondary);">Número de resgates disponíveis</small>
           </div>
         </div>
 
         <div class="form-group">
           <label for="imagem">URL da Imagem</label>
-          <input type="url" id="imagem" name="imagemUrl" placeholder="https://exemplo.com/imagem.jpg">
+          <input type="url" id="imagem" placeholder="https://exemplo.com/imagem.jpg">
           <small style="color: var(--text-secondary);">Link para uma imagem representativa da vantagem</small>
         </div>
 
@@ -72,6 +76,8 @@
             <li>Use imagens de qualidade</li>
           </ul>
         </div>
+
+        <div id="mensagem" style="margin-top: 10px;"></div>
 
         <div class="flex gap-2 mt-3">
           <button type="submit" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar Vantagem</span></button>
@@ -86,7 +92,8 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+
   <script src="../js/ui.js" defer></script>
+  <script src="../js/cadastrarVantagem.js" defer></script>
 </body>
 </html>
-

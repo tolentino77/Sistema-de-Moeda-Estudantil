@@ -1,0 +1,67 @@
+// auth-professor.js — login simplificado por e-mail
+const API_BASE = 'https://sistema-de-moeda-estudantil-2.onrender.com/api/api/';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const errorMessage = document.getElementById('errorMessage');
+
+  function showError(msg) {
+    errorMessage.textContent = msg;
+    errorMessage.style.display = 'block';
+  }
+
+  function clearError() {
+    errorMessage.textContent = '';
+    errorMessage.style.display = 'none';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      showError('Informe seu e-mail.');
+      return;
+    }
+
+    try {
+      // Busca o professor pelo e-mail na API
+      const resp = await fetch(`${API_BASE}professors/email/${email}`, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (resp.status === 404) {
+        showError('Professor não encontrado.');
+        return;
+      }
+
+      if (!resp.ok) {
+        showError('Erro ao buscar o professor. Tente novamente mais tarde.');
+        return;
+      }
+
+      const data = await resp.json();
+      const professor = Array.isArray(data) ? data[0] : data;
+
+      if (!professor || !professor.id) {
+        showError('Professor não encontrado ou resposta inválida.');
+        return;
+      }
+
+      // Salva dados do professor no localStorage
+      localStorage.setItem('professorId', String(professor.id));
+      localStorage.setItem('professorName', professor.name || '');
+      localStorage.setItem('professorEmail', professor.email || '');
+
+      // Redireciona para o extrato do professor
+      window.location.href = '../professor/extrato.html';
+    } catch (err) {
+      console.error('Erro no login do professor:', err);
+      showError('Erro ao conectar com o servidor.');
+    }
+  });
+});

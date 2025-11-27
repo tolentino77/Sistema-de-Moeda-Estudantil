@@ -7,10 +7,13 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="bg-pucfundo">
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg>
+        <span>Moeda Estudantil</span>
+      </a>
       <nav>
         <ul>
           <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#home"></use></svg><span>Início</span></a></li>
@@ -27,35 +30,37 @@
         <p style="color: var(--text-secondary);">Torne-se um parceiro e ofereça vantagens aos estudantes</p>
       </div>
 
-      <!-- POST /api/companies/company -->
-      <form method="POST" action="/api/companies/company">
+      <!-- FORM CONTROLADO VIA JS -->
+      <form id="registerCompanyForm" novalidate>
+        <div id="formMessage" style="display:none; margin-bottom:1rem;"></div>
+
         <div class="grid grid-2">
           <div class="form-group">
             <label for="nomeFantasia">Nome Fantasia *</label>
-            <input type="text" id="nomeFantasia" name="nomeFantasia" placeholder="Ex: TechStore" required>
+            <input type="text" id="nomeFantasia" required>
           </div>
 
           <div class="form-group">
             <label for="razaoSocial">Razão Social *</label>
-            <input type="text" id="razaoSocial" name="razaoSocial" placeholder="Ex: TechStore Comércio Ltda" required>
+            <input type="text" id="razaoSocial" required>
           </div>
         </div>
 
         <div class="grid grid-2">
           <div class="form-group">
             <label for="cnpj">CNPJ *</label>
-            <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+            <input type="text" id="cnpj" placeholder="00.000.000/0000-00" required>
           </div>
 
           <div class="form-group">
             <label for="email">Email Corporativo *</label>
-            <input type="email" id="email" name="email" placeholder="contato@empresa.com.br" required>
+            <input type="email" id="email" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="senha">Senha *</label>
-          <input type="password" id="senha" name="senha" required>
+          <input type="password" id="senha" required>
         </div>
 
         <div class="alert alert-info">
@@ -68,8 +73,14 @@
         </div>
 
         <div class="flex gap-2 mt-3">
-          <button type="submit" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Cadastrar Empresa</span></button>
-          <a href="../login/index.html" class="btn btn-secondary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#login"></use></svg><span>Já tenho conta</span></a>
+          <button id="submitBtn" type="submit" class="btn btn-primary with-icon">
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg>
+            <span>Cadastrar Empresa</span>
+          </button>
+          <a href="../login/index.html" class="btn btn-secondary with-icon">
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#login"></use></svg>
+            <span>Já tenho conta</span>
+          </a>
         </div>
       </form>
     </div>
@@ -80,7 +91,8 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+
   <script src="../js/ui.js" defer></script>
+  <script src="../js/cadastro-empresa.js" defer></script>
 </body>
 </html>
-

@@ -7,7 +7,11 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="has-video-bg">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="../assets/img/andandopuc.mp4" type="video/mp4">
+  </video>
+
   <header>
     <div class="header-container">
       <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
@@ -26,7 +30,7 @@
   <main>
     <div class="balance-display">
       <div class="balance-label">Saldo Atual</div>
-      <div class="balance-amount">750 �Y�T</div>
+      <div class="balance-amount">750</div>
       <p>250 moedas distribuídas de 1.000 iniciais</p>
     </div>
 
@@ -53,36 +57,36 @@
               <td>15/01/2025 14:30</td>
               <td>João Silva</td>
               <td>Excelente participação em aula sobre algoritmos</td>
-              <td style="color: var(--danger-color); font-weight: 600;">-100 �Y�T</td>
-              <td>750 �Y�T</td>
+              <td style="color: var(--danger-color); font-weight: 600;">-100</td>
+              <td>750</td>
             </tr>
             <tr>
               <td>12/01/2025 10:15</td>
               <td>Maria Oliveira</td>
               <td>Trabalho excepcional no projeto de banco de dados</td>
-              <td style="color: var(--danger-color); font-weight: 600;">-50 �Y�T</td>
-              <td>850 �Y�T</td>
+              <td style="color: var(--danger-color); font-weight: 600;">-50</td>
+              <td>850 </td>
             </tr>
             <tr>
               <td>10/01/2025 16:45</td>
               <td>Pedro Santos</td>
               <td>Ajudou colegas com dificuldades em programação</td>
-              <td style="color: var(--danger-color); font-weight: 600;">-30 �Y�T</td>
-              <td>900 �Y�T</td>
+              <td style="color: var(--danger-color); font-weight: 600;">-30 </td>
+              <td>900 </td>
             </tr>
             <tr>
               <td>08/01/2025 09:20</td>
               <td>Ana Costa</td>
               <td>Apresentação criativa do seminário sobre IA</td>
-              <td style="color: var(--danger-color); font-weight: 600;">-70 �Y�T</td>
-              <td>930 �Y�T</td>
+              <td style="color: var(--danger-color); font-weight: 600;">-70 </td>
+              <td>930 </td>
             </tr>
             <tr>
               <td>05/01/2025 11:00</td>
               <td>João Silva</td>
               <td>Saldo inicial do sistema</td>
-              <td style="color: var(--success-color); font-weight: 600;">+1000 �Y�T</td>
-              <td>1.000 �Y�T</td>
+              <td style="color: var(--success-color); font-weight: 600;">+1000</td>
+              <td>1.000 </td>
             </tr>
           </tbody>
         </table>
@@ -96,6 +100,7 @@
     </div>
   </footer>
   <script src="../js/ui.js" defer></script>
+  <script src="../js/professor-extrato.js" defer></script>
 </body>
 </html>
 

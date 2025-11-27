@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmação de Envio de Pontos</title>
+</head>
+<body style="margin: 0; padding: 0; background: url('../assets/img/pucfundo.png') center/cover no-repeat fixed, #f2f4f6; font-family: Arial, sans-serif;">
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f2f4f6; padding: 40px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          
+          <!-- Cabeçalho -->
+          <tr>
+            <td align="center" style="background-color: #2563eb; padding: 20px 0;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🎓 Pontos Enviados com Sucesso!</h1>
+            </td>
+          </tr>
+
+          <!-- Corpo -->
+          <tr>
+            <td style="padding: 30px; color: #333333; font-size: 16px; line-height: 1.6;">
+              <p style="margin: 0 0 15px;">Caro(a) Professor(a) <strong style="color: #2563eb;">{{nomeProfessor}}</strong>,</p>
+              
+              <p style="margin: 0 0 15px;">Você enviou com sucesso <strong>{{quantidadePontos}} pontos</strong> para o aluno <strong style="color: #2563eb;">{{nomeAluno}}</strong>! 🪙</p>
+              
+              <p style="margin: 0 0 25px;">Continue incentivando seus alunos! Cada ponto faz a diferença! 💪</p>
+
+              <!-- (Opcional) Botão -->
+              <div style="text-align: center;">
+                <a href="{{linkPainelProfessor}}" style="
+                  background-color: #2563eb;
+                  color: white;
+                  padding: 12px 24px;
+                  border-radius: 6px;
+                  text-decoration: none;
+                  font-weight: bold;
+                  display: inline-block;
+                ">Verificar no Painel</a>
+              </div>
+
+              <p style="margin-top: 25px; font-size: 14px; color: #777;">
+                Caso não tenha realizado este envio, entre em contato com o suporte do sistema Moeda Estudantil.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Rodapé -->
+          <tr>
+            <td align="center" style="background-color: #f9f9f9; padding: 15px; font-size: 13px; color: #999;">
+              © 2025 Moeda Estudantil. Todos os direitos reservados.<br>
+              <a href="https://sistema-de-moeda-estudantil.vercel.app" style="color: #2563eb; text-decoration: none;">Acessar o sistema</a>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
