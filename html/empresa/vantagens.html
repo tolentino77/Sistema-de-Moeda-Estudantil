@@ -14,13 +14,16 @@
 
   <header>
     <div class="header-container">
-      <a href="../index.html" class="logo with-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="../assets/icons.svg#coin"></use></svg><span>Moeda Estudantil</span></a>
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg"><use href="../assets/icons.svg#coin"></use></svg>
+        <span>Moeda Estudantil</span>
+      </a>
       <nav>
         <ul>
-          <li><a href="perfil.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#briefcase"></use></svg><span>Perfil</span></a></li>
-          <li><a href="vantagens.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#wallet"></use></svg><span>Minhas Vantagens</span></a></li>
-          <li><a href="cadastrar-vantagem.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Nova Vantagem</span></a></li>
-          <li><a href="../index.html" class="with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
+          <li><a href="perfil.html" class="with-icon"><svg class="icon"><use href="../assets/icons.svg#briefcase"></use></svg><span>Perfil</span></a></li>
+          <li><a href="vantagens.html" class="with-icon"><svg class="icon"><use href="../assets/icons.svg#wallet"></use></svg><span>Minhas Vantagens</span></a></li>
+          <li><a href="cadastrar-vantagem.html" class="with-icon"><svg class="icon"><use href="../assets/icons.svg#save"></use></svg><span>Nova Vantagem</span></a></li>
+          <li><a href="../index.html" class="with-icon"><svg class="icon"><use href="../assets/icons.svg#logout"></use></svg><span>Sair</span></a></li>
         </ul>
       </nav>
     </div>
@@ -33,10 +36,12 @@
           <h2 class="card-title">Minhas Vantagens</h2>
           <p style="color: var(--text-secondary);">Gerencie as vantagens oferecidas pela sua empresa</p>
         </div>
-        <a href="cadastrar-vantagem.html" class="btn btn-primary with-icon"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#save"></use></svg><span>Nova Vantagem</span></a>
+        <a href="cadastrar-vantagem.html" class="btn btn-primary with-icon">
+          <svg class="icon"><use href="../assets/icons.svg#save"></use></svg>
+          <span>Nova Vantagem</span>
+        </a>
       </div>
 
-      <!-- GET /api/advantages/all (filtrado por empresa) -->
       <div class="table-container">
         <table>
           <thead>
@@ -49,56 +54,11 @@
               <th>Ações</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><strong>Desconto 15% Notebook</strong></td>
-              <td>500 �Y�T</td>
-              <td>15 unidades</td>
-              <td>35 resgates</td>
-              <td><span style="color: var(--success-color);">Ativa</span></td>
-              <td>
-                <div class="flex gap-1">
-                  <a href="editar-vantagem.html?id=1" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Editar</a>
-                  <form method="POST" action="/api/advantages/advantage/1" style="display: inline;">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="return confirm('Deseja excluir esta vantagem?')">Excluir</button>
-                  </form>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Mouse Gamer</strong></td>
-              <td>200 �Y�T</td>
-              <td>30 unidades</td>
-              <td>18 resgates</td>
-              <td><span style="color: var(--success-color);">Ativa</span></td>
-              <td>
-                <div class="flex gap-1">
-                  <a href="editar-vantagem.html?id=2" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Editar</a>
-                  <form method="POST" action="/api/advantages/advantage/2" style="display: inline;">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="return confirm('Deseja excluir esta vantagem?')">Excluir</button>
-                  </form>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Teclado Mecânico</strong></td>
-              <td>350 �Y�T</td>
-              <td>0 unidades</td>
-              <td>25 resgates</td>
-              <td><span style="color: var(--danger-color);">Esgotada</span></td>
-              <td>
-                <div class="flex gap-1">
-                  <a href="editar-vantagem.html?id=3" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Editar</a>
-                  <form method="POST" action="/api/advantages/advantage/3" style="display: inline;">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="return confirm('Deseja excluir esta vantagem?')">Excluir</button>
-                  </form>
-                </div>
-              </td>
-            </tr>
+
+          <tbody id="vantagensList">
+            <!-- preenchido via JS -->
           </tbody>
+
         </table>
       </div>
     </div>
@@ -109,7 +69,8 @@
       <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
     </div>
   </footer>
+
   <script src="../js/ui.js" defer></script>
+  <script src="../js/minha-vantagem.js" defer></script>
 </body>
 </html>
-

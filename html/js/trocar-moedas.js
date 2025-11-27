@@ -1,210 +1,171 @@
 // trocar-moedas.js
-const API_BASE = 'https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/';
+const API_BASE = "https://sistema-de-moeda-estudantil-r46j.onrender.com/api/api/";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const loadingEl = document.getElementById('loading');
-  const errorEl = document.getElementById('error');
-  const advantagesContainer = document.getElementById('advantagesContainer');
-  const noAdvantagesEl = document.getElementById('noAdvantages');
-  const balanceAmount = document.getElementById('balanceAmount');
-  const logoutLink = document.getElementById('logoutLink');
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingEl = document.getElementById("loading");
+  const errorEl = document.getElementById("error");
+  const advantagesContainer = document.getElementById("advantagesContainer");
+  const noAdvantagesEl = document.getElementById("noAdvantages");
+  const balanceAmount = document.getElementById("balanceAmount");
+  const logoutLink = document.getElementById("logoutLink");
+
+  const DEFAULT_IMAGE = "../assets/img/default-advantage.png";
 
   // Logout
-  logoutLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        try {
-        localStorage.removeItem('studentId');
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('studentName');
-        localStorage.removeItem('studentEmail');
-        // ou localStorage.clear(); se quiser limpar tudo
-        } catch (err) {
-        console.warn('Erro ao limpar localStorage no logout:', err);
-        }
-        window.location.href = '../index.html';
-    });
+  logoutLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.href = "../index.html";
+  });
 
-
-  // Função auxiliar para requisições com token
+  // ============ FETCH COM TOKEN ============
   async function fetchJson(url, opts = {}) {
-    const token = localStorage.getItem('authToken');
-    const headers = Object.assign({}, opts.headers || {});
-    if (token) headers['Authorization'] = `Bearer ${token}`;
-    const res = await fetch(url, Object.assign({}, opts, { headers }));
-    return res;
+    const token = localStorage.getItem("authToken");
+    const headers = { ...opts.headers };
+
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+
+    return fetch(url, { ...opts, headers });
   }
 
-  // Carrega dados do aluno (para mostrar o saldo)
+  // ============ SALDO ============
   async function loadStudentData(studentId) {
     try {
-      const url = `${API_BASE}students/student/${encodeURIComponent(studentId)}`;
+      const url = `${API_BASE}students/student/${studentId}`;
       const resp = await fetchJson(url);
-      if (!resp.ok) throw new Error('Erro ao buscar dados do aluno');
+      if (!resp.ok) throw new Error();
 
       const data = await resp.json();
-      const saldo = data.score != null ? data.score : 0;
-      balanceAmount.textContent = `${saldo.toLocaleString('pt-BR')} moedas`;
-      return saldo;
+      balanceAmount.textContent = `${data.score ?? 0} moedas`;
+      return data.score ?? 0;
+
     } catch (err) {
-      console.error('Erro ao carregar dados do aluno:', err);
-      errorEl.textContent = 'Erro ao carregar dados do aluno.';
-      errorEl.style.display = 'block';
+      errorEl.textContent = "Erro ao carregar dados do aluno.";
+      errorEl.style.display = "block";
       return 0;
     }
   }
 
-  // Cria e renderiza os cards das vantagens
+  // ============ VANTAGENS ============
   async function loadAdvantages(studentBalance) {
     try {
       const resp = await fetchJson(`${API_BASE}advantages/all`);
-      if (!resp.ok) throw new Error('Erro ao buscar vantagens');
+      if (!resp.ok) throw new Error();
+
       const advantages = await resp.json();
 
-      loadingEl.style.display = 'none';
-      advantagesContainer.style.display = 'grid';
-      advantagesContainer.innerHTML = '';
+      loadingEl.style.display = "none";
+      advantagesContainer.style.display = "grid";
+      advantagesContainer.innerHTML = "";
 
-      if (!advantages || advantages.length === 0) {
-        noAdvantagesEl.style.display = 'block';
+      if (!advantages.length) {
+        noAdvantagesEl.style.display = "block";
         return;
       }
 
       advantages.forEach((adv) => {
-        const card = document.createElement('div');
-        card.classList.add('card', 'advantage-card');
-        card.style.textAlign = 'center';
-        card.style.padding = '1rem';
+        const card = document.createElement("div");
+        card.classList.add("advantage-card");
 
-        // Imagem
-        const img = document.createElement('img');
-        img.src = adv.photoUrl || '../assets/default-advantage.png';
-        img.alt = adv.name;
-        img.style.width = '100px';
-        img.style.height = '100px';
-        img.style.objectFit = 'cover';
-        img.style.borderRadius = '10px';
-        img.style.marginBottom = '0.5rem';
+        // 🌟 IMAGEM
+        const img = document.createElement("img");
+        img.src = adv.photoUrl && adv.photoUrl.length > 5 ? adv.photoUrl : DEFAULT_IMAGE;
 
-        // Título
-        const title = document.createElement('h3');
+        img.onerror = () => img.src = DEFAULT_IMAGE;
+
+        // TÍTULO
+        const title = document.createElement("h3");
         title.textContent = adv.name;
-        title.style.marginBottom = '0.5rem';
-        title.style.color = 'var(--text-primary)';
 
-        // Descrição
-        const desc = document.createElement('p');
-        desc.textContent = adv.description || '—';
-        desc.style.fontSize = '0.9rem';
-        desc.style.color = 'var(--text-secondary)';
-        desc.style.marginBottom = '0.5rem';
+        // DESCRIÇÃO (TRUNCADA)
+        const desc = document.createElement("p");
+        desc.classList.add("truncate");
+        desc.textContent = adv.description;
 
-        // Empresa
-        const company = document.createElement('p');
-        company.textContent = `Empresa: ${adv.companyName || '—'}`;
-        company.style.fontSize = '0.85rem';
-        company.style.color = 'var(--text-secondary)';
-        company.style.marginBottom = '0.5rem';
+        // EMPRESA
+        const company = document.createElement("p");
+        company.textContent = `Empresa: ${adv.companyName}`;
 
-        // Preço
-        const price = document.createElement('div');
+        // PREÇO
+        const price = document.createElement("div");
+        price.classList.add("price");
         price.textContent = `${adv.coinCost} moedas`;
-        price.style.fontWeight = 'bold';
-        price.style.color = 'var(--accent-color)';
-        price.style.marginBottom = '0.75rem';
 
-        // Botão
-        // Botão
-    const button = document.createElement('button');
-    button.classList.add('button');
-    button.style.width = '100%';
-    button.style.maxWidth = '180px';
-    button.style.margin = '0 auto';
+        // BOTÃO
+        const button = document.createElement("button");
+        button.style.width = "100%";
 
-    // Verifica disponibilidade da vantagem
-    if (adv.quantity === 0) {
-    button.textContent = 'Indisponível';
-    button.disabled = true;
-    button.style.backgroundColor = '#aaa';
-    button.style.cursor = 'not-allowed';
-    card.style.opacity = '0.7'; // visual mais apagado
-    } else if (studentBalance >= adv.coinCost) {
-    button.textContent = 'Trocar';
-    button.addEventListener('click', () => trocarVantagem(adv));
-    } else {
-    button.textContent = 'Saldo insuficiente';
-    button.disabled = true;
-    button.classList.add('button-disabled');
-    }
+        if (adv.quantity === 0) {
+          button.textContent = "Indisponível";
+          button.disabled = true;
 
+        } else if (studentBalance >= adv.coinCost) {
+          button.textContent = "Trocar";
+          button.addEventListener("click", () => trocarVantagem(adv));
+
+        } else {
+          button.textContent = "Saldo insuficiente";
+          button.disabled = true;
+        }
 
         card.append(img, title, desc, company, price, button);
         advantagesContainer.appendChild(card);
       });
+
     } catch (err) {
-      console.error('Erro ao carregar vantagens:', err);
-      errorEl.textContent = 'Erro ao carregar vantagens.';
-      errorEl.style.display = 'block';
+      errorEl.textContent = "Erro ao carregar vantagens.";
+      errorEl.style.display = "block";
     }
   }
 
-  // Função de troca de vantagem
-async function trocarVantagem(vantagem) {
-  const studentId = localStorage.getItem('studentId');
-  const studentName = localStorage.getItem('studentName');
-  const studentEmail = localStorage.getItem('studentEmail');
+  // ============ TROCA ============
+  async function trocarVantagem(vantagem) {
+    const studentId = localStorage.getItem("studentId");
+    const studentName = localStorage.getItem("studentName");
+    const studentEmail = localStorage.getItem("studentEmail");
 
-  if (!studentId) {
-    alert('Sessão expirada. Faça login novamente.');
-    window.location.href = '../login.html';
-    return;
+    if (!confirm(`Deseja trocar ${vantagem.coinCost} moedas por "${vantagem.name}"?`)) return;
+
+    try {
+      const resp = await fetchJson(`${API_BASE}exchanges/exchange`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ studentId, advantageId: vantagem.id }),
+      });
+
+      if (!resp.ok) throw new Error();
+
+      alert("Troca realizada com sucesso!");
+
+      await fetch(`${API_BASE}emails/send-confirmation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: studentEmail,
+          name: studentName,
+          product: vantagem.name,
+        }),
+      });
+
+      alert("Um e-mail de confirmação foi enviado.");
+      location.reload();
+
+    } catch (err) {
+      alert("Erro ao realizar troca.");
+    }
   }
 
-  if (!confirm(`Deseja trocar ${vantagem.coinCost} moedas por "${vantagem.name}"?`)) return;
-
-  try {
-    const resp = await fetchJson(`${API_BASE}exchanges/exchange`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ studentId, advantageId: vantagem.id }),
-    });
-
-    if (!resp.ok) throw new Error('Erro ao processar troca.');
-
-    alert('Troca realizada com sucesso!');
-
-    // === 🔽 ENVIO DO E-MAIL DE CONFIRMAÇÃO 🔽 ===
-    await fetch(`${API_BASE}emails/send-confirmation`, { // <-- coloque o endpoint real do backend
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        to: studentEmail,             // e-mail do aluno
-        name: studentName,            // nome do aluno
-        product: vantagem.name,       // nome do produto/benefício
-      }),
-    });
-
-    // mostrar mensagem para o usuário
-    alert('Um e-mail de confirmação foi enviado para o seu endereço cadastrado.');
-
-    location.reload();
-  } catch (err) {
-    console.error('Erro ao realizar troca:', err);
-    alert('Erro ao realizar troca. Tente novamente.');
-  }
-}
-
-  // Inicialização
+  // ============ INIT ============
   async function init() {
-    const studentId = localStorage.getItem('studentId');
-    if (!studentId) {
-      window.location.href = '../login.html';
-      return;
-    }
+    const studentId = localStorage.getItem("studentId");
+    if (!studentId) return (window.location.href = "../login.html");
 
-    loadingEl.style.display = 'block';
+    loadingEl.style.display = "block";
+
     const saldo = await loadStudentData(studentId);
     await loadAdvantages(saldo);
-    loadingEl.style.display = 'none';
+
+    loadingEl.style.display = "none";
   }
 
   init();

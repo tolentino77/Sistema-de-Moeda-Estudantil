@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description: document.getElementById("descricao").value.trim(),
       coinCost: parseInt(document.getElementById("custo").value),
       quantity: parseInt(document.getElementById("quantidade").value),
-      imageUrl: document.getElementById("imagem").value.trim() || null
+      photoUrl: document.getElementById("imagem").value.trim() || null
     };
 
     console.log("Enviando payload:", payload);
