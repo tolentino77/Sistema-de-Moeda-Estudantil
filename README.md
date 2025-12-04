@@ -1,118 +1,123 @@
 # 💰 Sistema de Moeda Estudantil (Release 2 - MVP)
 
-Este repositório contém a **segunda release (MVP)** do **Sistema de Moeda Estudantil**, com o objetivo de estimular o reconhecimento do mérito estudantil por meio de uma moeda virtual distribuída por professores e trocada por alunos em empresas parceiras.
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED)
 
-O Back-end está completo, implementando a lógica central de transações, controle de saldos, estoque de recompensas e notificação por e-mail, conforme os requisitos do projeto.
+Este repositório contém a **segunda release (MVP)** do **Sistema de Moeda Estudantil**, desenvolvido para estimular o reconhecimento do mérito estudantil através de uma moeda virtual distribuída por professores e trocada por alunos em empresas parceiras.
 
-## Participantes
+## 👥 Participantes
 
-| Integrantes | Professores responsáveis |
-| --- | --- |
-| João  Vitor Tolentino ([@tolentino77](https://github.com/tolentino77)) | João Paulo Carneiro Aramuni ([@joaopauloaramuni](https://github.com/joaopauloaramuni)) |
-| Thiago Lacerda ([@thivizinx](https://github.com/thivizinx)) |
-| Victhor Ribeiro ([@victhorribeiro](https://github.com/victhorribeiro)) |
-| Gabriel Reis ([@ReisBiel23](https://github.com/ReisBiel23)) |
-
-## 📅 Gerenciamento do Projeto
-
-O projeto é gerenciado por Sprints, e a **Release 2** marcou a conclusão do MVP funcional (API) e a criação dos protótipos visuais completos, conforme o cronograma do laboratório.
-
-| Sprint | Foco Principal | Status |
-| --- | --- | --- |
-| **R1 (Modelagem)** | Modelagem UML (Casos de Uso, Classes, Componentes, ER) e CRUDs Iniciais. | ✅ Concluída |
-| **LAB04S01** | Envio de Moedas, Consultas de Extrato e E-mails de Notificação (Prof./Aluno). | ✅ Concluída |
-| **LAB04S02** | Cadastro de Vantagens (Empresa), Listagem (Aluno) e **Diagramas de Sequências (Envio/Cadastro)**. | ✅ Concluída |
-| **LAB04S03** | Troca de Vantagens (Aluno) e **Diagramas de Sequências (Troca)**. | ✅ Concluída |
+| Integrantes | Função | GitHub |
+| :--- | :--- | :--- |
+| **João Vitor Tolentino** | Desenvolvedor | [@tolentino77](https://github.com/tolentino77) |
+| **Thiago Lacerda** | Desenvolvedor | [@thivizinx](https://github.com/thivizinx) |
+| **Victhor Ribeiro** | Desenvolvedor | [@victhorribeiro](https://github.com/victhorribeiro) |
+| **Gabriel Reis** | Desenvolvedor | [@ReisBiel23](https://github.com/ReisBiel23) |
+| **João Paulo C. Aramuni** | Professor Orientador | [@joaopauloaramuni](https://github.com/joaopauloaramuni) |
 
 ---
 
-## 💻 Funcionalidades Chave do MVP (API - Spring Boot)
+## 🚀 Guia de Instalação e Execução
 
-O core do sistema (API) em Spring Boot (Java 17) implementa todas as regras de negócio:
+Siga os passos abaixo para configurar o ambiente de desenvolvimento e executar o projeto localmente.
 
-| Funcionalidade | Detalhes da Regra de Negócio | Endpoints Relevantes |
-| --- | --- | --- |
-| **Início de Saldo** | Professores recebem **1.000 moedas** a cada semestre, sendo o saldo **acumulável**. | `POST /api/professors/professor` |
-| **Enviar Moedas** | Professor envia moedas com validação de saldo e motivo (mensagem obrigatória). | `POST /api/transactions/transaction` |
-| **Notificação de Envio** | Aluno é notificado por **e-mail** ao receber moedas. Professor recebe confirmação. | Serviço `EmailService` |
-| **Cadastrar Vantagem** | Empresa parceira cadastra Vantagens com descrição, custo e controle de **estoque**. | `POST /api/advantages/advantage` |
-| **Trocar Moedas** | Aluno resgata vantagem com saldo e estoque validados. Gera **código de resgate**. | `POST /api/exchanges/exchange` |
-| **Notificação de Troca** | E-mail de **cupom/código de resgate** enviado ao aluno e notificação enviada ao parceiro (ambos com o código). | Serviço `CoinExchangeService` |
-| **Consultar Extrato** | Consulta do saldo total e extrato de transações/trocas para Alunos e Professores. | `GET /api/extracts/*` |
+### 1️⃣ Pré-requisitos (O que baixar)
+
+Certifique-se de ter as seguintes ferramentas instaladas:
+
+* **[Java JDK 17+](https://adoptium.net/)**: Necessário para rodar a API (Spring Boot).
+* **[Docker Desktop](https://www.docker.com/products/docker-desktop/)**: Essencial para subir o banco de dados PostgreSQL via container.
+* **[Node.js (LTS)](https://nodejs.org/)**: Necessário apenas se for rodar o frontend em Next.js (pasta `IDEAL`).
+* **[Git](https://git-scm.com/)**: Para versionamento de código.
 
 ---
 
-## 🛠 Guia de Instalação e Execução - Ambiente Dev
+### 2️⃣ Configuração do Backend (API)
 
-Este guia foca na execução do **Back-end (API)** e na visualização dos **Protótipos Estáticos** (HTML/CSS) produzidos.
+O backend gerencia as transações, usuários e regras de negócio.
 
-### 1️⃣ Pré-requisitos  
+#### Passo A: Configurar o Banco de Dados
+Utilizamos Docker Compose para facilitar a criação do banco.
 
-- [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html) (Versão **17+**)  
-- [Maven](https://maven.apache.org/download.cgi) (ou use o `mvnw` incluso)  
-- [Docker](https://www.docker.com/products/docker-desktop) e [Docker Compose](https://docs.docker.com/compose/install/) (Para o Banco de Dados PostgreSQL)
-- **Opcional:** Node.js (LTS) para rodar o Front-end `IDEAL`.
+1.  Abra o terminal na pasta do backend:
+    ```bash
+    cd backend/moeda_estudantil
+    ```
+2.  Inicie o container do banco de dados:
+    ```bash
+    docker-compose up -d
+    ```
+    > **Nota:** Isso criará um banco PostgreSQL na porta `5432` (usuário: `postgres`, senha: `postgres`).
 
-### 2️⃣ Configuração e Execução do Back-end (API)
+#### Passo B: Executar a Aplicação
+1.  Ainda na pasta `backend/moeda_estudantil`, execute o wrapper do Maven:
+    * **Windows (CMD/PowerShell):**
+        ```cmd
+        ./mvnw.cmd spring-boot:run
+        ```
+    * **Linux/Mac:**
+        ```bash
+        chmod +x mvnw
+        ./mvnw spring-boot:run
+        ```
 
-📂 **Caminho do projeto:** `./backend/moeda_estudantil`
+2.  A API estará disponível em: `http://localhost:8080/api`
 
-#### ▶️ Iniciar Banco de Dados (PostgreSQL)
+---
 
-Execute o Docker Compose na pasta do back-end para levantar o banco de dados:
+### 3️⃣ Execução do Frontend
 
-```sh
-cd backend/moeda_estudantil
-docker-compose up -d postgres
+Existem duas versões de interface disponíveis neste repositório:
 
-```
+#### Opção A: Protótipos Estáticos (HTML/JS)
+Ideal para visualização rápida dos fluxos sem necessidade de compilação.
 
-### 🚀 Iniciar a API Spring Boot
-A API será inicializada na porta 8080, e a base URL será http://localhost:8080/api.
+1.  Navegue até a pasta `html/`.
+2.  Abra o arquivo `index.html` no seu navegador ou use a extensão "Live Server" do VS Code.
 
-```sh
+#### Opção B: Aplicação Moderna (Next.js)
+Versão completa e reativa do sistema (código na pasta `IDEAL`).
 
-# Na pasta ./backend/moeda_estudantil:
-./mvnw spring-boot:run
+1.  Entre na pasta do projeto:
+    ```bash
+    cd IDEAL
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Rode o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+4.  Acesse `http://localhost:3000` no seu navegador.
 
-```
+---
 
-### 🌐 Protótipos Visuais (HTML/CSS)
-Os protótipos estáticos representam a interface completa do sistema, simulando o fluxo da Release 2.
+## 💻 Funcionalidades Principais
 
-| Perfil | Fluxo Principal | Arquivo de Acesso |
-| --- | --- | --- |
-| Aluno | Consultar Perfil e saldo| `./html/aluno/perfil.html` |
-| Aluno | Visualizar e Resgatar Vantagens | `./html/aluno/trocar-moedas.html` |
-| Professor | Enviar Moedas para Aluno | `./html/professor/enviar.html` |
-| Empresa | Cadastro de Nova Vantagem | `./html/empresa/cadastrar-vantagem.html` |
-| Geral | Login e Seleção de Perfil | `./html/login/index.html` |
+| Funcionalidade | Descrição | Endpoint (API) |
+| :--- | :--- | :--- |
+| **Autenticação** | Login diferenciado para Alunos, Professores e Empresas. | `POST /api/login` |
+| **Envio de Moedas** | Professores enviam moedas aos alunos com mensagem de mérito. | `POST /api/transactions` |
+| **Extrato** | Consulta de histórico de transações e saldo atual. | `GET /api/extracts` |
+| **Vantagens** | Empresas cadastram produtos e descontos disponíveis. | `POST /api/advantages` |
+| **Troca** | Alunos trocam moedas por vantagens e recebem cupom. | `POST /api/exchanges` |
+| **Notificações** | Envio de e-mails para notificar recebimento de moedas e trocas. | *(Automático)* |
 
-### 🔨 Modelagem Documentada (R1 e R2)
-A modelagem completa do sistema pode ser consultada na pasta /docs:
+---
 
-- Diagrama de Classes & ER (Inclui Aluno, Professor, Empresa, Vantagem, etc.)
+## 🛠 Tecnologias Utilizadas
 
-- Diagrama de Componentes (Visão geral da arquitetura MVC)
+* **Backend:** Java 17, Spring Boot, Spring Data JPA, Lombok, JavaMailSender.
+* **Banco de Dados:** PostgreSQL (via Docker).
+* **Frontend:** HTML5/CSS3 (Protótipo) e Next.js/TailwindCSS (Aplicação Principal).
+* **Ferramentas:** Maven, Docker Compose, Git.
 
-- Diagramas de Sequência (Fluxos de Autenticação, Envio de Moedas, Cadastro e Troca de Vantagens)
+---
 
-
-### 🧪 Testes
-Os testes automatizados e a verificação de código foram realizados nas seguintes camadas:
-
-- Testes Unitários (Java): Cobertura das regras de negócio e serviços críticos (ex: dedução de saldo, validação de estoque). Arquivos de teste no diretório src/test/java.
-
-- Verificação de Código (Next.js/TS): A etapa de build (npm run build) executa a verificação de tipos com TypeScript e qualidade de código com ESLint.
-
-```sh
-
-# Scipts de Build/Verificação
-# No diretório do Next.js (IDEAL)
-npm run build
-
-```
-
-
-
-
+### 📧 Configuração de Email (Opcional)
+Para que o envio de emails funcione localmente, configure as variáveis de ambiente `EMAIL_USERNAME` e `EMAIL_PASSWORD` no arquivo `application.properties` ou nas variáveis do seu sistema operacional. Caso contrário, verifique os logs do console para simulações de envio.
