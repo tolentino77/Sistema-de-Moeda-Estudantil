@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar Senha - Sistema de Moeda Estudantil</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preload" as="image" href="../assets/icons.svg" type="image/svg+xml" />
+</head>
+<body class="bg-pucfundo">
+  <header>
+    <div class="header-container">
+      <a href="../index.html" class="logo with-icon">
+        <svg class="icon icon-lg" aria-hidden="true">
+          <use href="../assets/icons.svg#coin"></use>
+        </svg>
+        <span>Moeda Estudantil</span>
+      </a>
+      <nav>
+        <ul>
+          <li>
+            <a href="../index.html" class="with-icon">
+              <svg class="icon" aria-hidden="true">
+                <use href="../assets/icons.svg#home"></use>
+              </svg>
+              <span>Início</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="card" style="max-width: 500px; margin: 3rem auto;">
+      <div class="card-header text-center">
+        <h1 class="card-title">Recuperar Senha</h1>
+        <p style="color: var(--text-secondary);" id="subtitle">Informe seu e-mail para recuperar sua senha</p>
+      </div>
+
+      <!-- Etapa 1: Solicitar email -->
+      <form id="emailForm" novalidate style="display: block;">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div id="errorMessage" style="color: #b00020; margin-bottom: 1rem; display:none;"></div>
+        <div id="successMessage" style="color: var(--success-color); margin-bottom: 1rem; display:none;"></div>
+
+        <button type="submit" class="btn btn-primary btn-block with-icon">
+          <svg class="icon" aria-hidden="true">
+            <use href="../assets/icons.svg#user"></use>
+          </svg>
+          <span>Verificar Email</span>
+        </button>
+      </form>
+
+      <!-- Etapa 2: Nova senha -->
+      <form id="passwordForm" novalidate style="display: none;">
+        <div class="form-group">
+          <label for="newPassword">Nova Senha</label>
+          <input type="password" id="newPassword" name="newPassword" required minlength="6" />
+          <small style="color: var(--text-secondary);">Mínimo de 6 caracteres</small>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirmar Nova Senha</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6" />
+        </div>
+
+        <div id="passwordErrorMessage" style="color: #b00020; margin-bottom: 1rem; display:none;"></div>
+        <div id="passwordSuccessMessage" style="color: var(--success-color); margin-bottom: 1rem; display:none;"></div>
+
+        <button type="submit" class="btn btn-primary btn-block with-icon">
+          <svg class="icon" aria-hidden="true">
+            <use href="../assets/icons.svg#save"></use>
+          </svg>
+          <span>Alterar Senha</span>
+        </button>
+      </form>
+
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
+        <a href="index.html" style="color: var(--primary-color); text-decoration: none;">Voltar para o login</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2025 Sistema de Moeda Estudantil. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="../js/emailJsConfig.js"></script>
+  <script src="../js/ui.js" defer></script>
+  <script src="../js/recuperar-senha.js" defer></script>
+</body>
+</html>
+

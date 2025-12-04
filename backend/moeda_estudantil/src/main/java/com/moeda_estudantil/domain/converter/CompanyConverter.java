@@ -39,5 +39,10 @@ public class CompanyConverter {
         entity.setCompanyNickname(dto.getCompanyNickname());
         entity.setCompanyName(dto.getCompanyName());
         entity.setEmail(dto.getEmail());
+        
+        // Update password if provided
+        if (dto.getPassword() != null && !dto.getPassword().isEmpty()) {
+            entity.setPassword(dto.getPassword());
+        }
     }
 }

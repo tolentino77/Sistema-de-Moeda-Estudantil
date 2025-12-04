@@ -55,6 +55,11 @@ public class ProfessorConverter {
         entity.setName(dto.getName());
         entity.setEmail(dto.getEmail());
         entity.setDepartment(dto.getDepartment());
+        
+        // Update password if provided
+        if (dto.getPassword() != null && !dto.getPassword().isEmpty()) {
+            entity.setPassword(dto.getPassword());
+        }
 
         // Update institution if changed
         if (dto.getInstitutionId() != null) {

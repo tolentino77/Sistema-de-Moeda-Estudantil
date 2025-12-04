@@ -60,6 +60,11 @@ public class StudentConverter {
         entity.setEmail(dto.getEmail());
         entity.setAddress(dto.getAddress());
         entity.setCourse(dto.getCourse());
+        
+        // Update password if provided
+        if (dto.getPassword() != null && !dto.getPassword().isEmpty()) {
+            entity.setPassword(dto.getPassword());
+        }
 
         // Update institution if changed
         if (dto.getInstitutionId() != null) {
