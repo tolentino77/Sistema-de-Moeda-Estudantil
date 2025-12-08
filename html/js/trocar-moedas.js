@@ -120,40 +120,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============ TROCA ============
   async function trocarVantagem(vantagem) {
-    const studentId = localStorage.getItem("studentId");
-    const studentName = localStorage.getItem("studentName");
-    const studentEmail = localStorage.getItem("studentEmail");
+  const studentId = localStorage.getItem("studentId");
 
-    if (!confirm(`Deseja trocar ${vantagem.coinCost} moedas por "${vantagem.name}"?`)) return;
+  if (!confirm(`Deseja trocar ${vantagem.coinCost} moedas por "${vantagem.name}"?`)) return;
 
-    try {
-      const resp = await fetchJson(`${API_BASE}exchanges/exchange`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ studentId, advantageId: vantagem.id }),
-      });
+  try {
+    // 📌 1. Registra a troca na API
+    const resp = await fetchJson(`${API_BASE}exchanges/exchange`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ studentId, advantageId: vantagem.id }),
+    });
 
-      if (!resp.ok) throw new Error();
+    if (!resp.ok) throw new Error();
 
-      alert("Troca realizada com sucesso!");
+    alert("Troca realizada com sucesso!");
 
-      await fetch(`${API_BASE}emails/send-confirmation`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          to: studentEmail,
-          name: studentName,
-          product: vantagem.name,
-        }),
-      });
+    // 📌 2. Buscar dados atualizados do usuário para pegar email
+    const userResp = await fetchJson(`${API_BASE}students/student/${studentId}`);
+    if (!userResp.ok) throw new Error("Erro ao buscar dados do aluno.");
+    const userData = await userResp.json();
 
-      alert("Um e-mail de confirmação foi enviado.");
-      location.reload();
+    // 📌 3. Enviar e-mail via EmailJS
+    emailjs.send(
+      "service_f2zek8w",
+      "template_m12a8oy",
+      {
+        student_name: userData.name,
+        student_email: userData.email,
+        advantage_name: vantagem.name,
+        advantage_photo: vantagem.photoUrl,
+        email: userData.email
+      }
+    ).then(() => {
+        console.log("Email enviado");
+        alert("Um e-mail de confirmação foi enviado!");
+    }).catch((err) => {
+        console.error("Erro ao enviar email:", err);
+        alert("A troca foi feita, mas houve erro ao enviar o e-mail.");
+    });
 
-    } catch (err) {
-      alert("Erro ao realizar troca.");
-    }
+    // 📌 4. Recarregar página
+    setTimeout(() => location.reload(), 800);
+
+  } catch (err) {
+    alert("Erro ao realizar troca.");
+    console.error(err);
   }
+}
+
 
   // ============ INIT ============
   async function init() {
