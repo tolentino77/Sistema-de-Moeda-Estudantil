@@ -1,9 +1,9 @@
 # 💰 Sistema de Moeda Estudantil (Release 2 - MVP)
 
-![Java](https://img.shields.io/badge/Java-17-orange)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
-![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![Java](https://img.shields.io/badge/Java-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-green)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-blue)
+![Next.js](https://img.shields.io/badge/Next.js-black)
 ![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED)
 
 Este repositório contém a **segunda release (MVP)** do **Sistema de Moeda Estudantil**, desenvolvido para estimular o reconhecimento do mérito estudantil através de uma moeda virtual distribuída por professores e trocada por alunos em empresas parceiras.
