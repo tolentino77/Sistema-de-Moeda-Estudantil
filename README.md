@@ -78,22 +78,6 @@ Ideal para visualização rápida dos fluxos sem necessidade de compilação.
 1.  Navegue até a pasta `html/`.
 2.  Abra o arquivo `index.html` no seu navegador ou use a extensão "Live Server" do VS Code.
 
-#### Opção B: Aplicação Moderna (Next.js)
-Versão completa e reativa do sistema (código na pasta `IDEAL`).
-
-1.  Entre na pasta do projeto:
-    ```bash
-    cd IDEAL
-    ```
-2.  Instale as dependências:
-    ```bash
-    npm install
-    ```
-3.  Rode o servidor de desenvolvimento:
-    ```bash
-    npm run dev
-    ```
-4.  Acesse `http://localhost:3000` no seu navegador.
 
 ---
 
@@ -121,3 +105,56 @@ Versão completa e reativa do sistema (código na pasta `IDEAL`).
 
 ### 📧 Configuração de Email (Opcional)
 Para que o envio de emails funcione localmente, configure as variáveis de ambiente `EMAIL_USERNAME` e `EMAIL_PASSWORD` no arquivo `application.properties` ou nas variáveis do seu sistema operacional. Caso contrário, verifique os logs do console para simulações de envio.
+
+---
+
+## 📦 Guia de Deploy (Produção)
+
+O projeto está configurado para facilitar o deploy na plataforma **Render** (Backend e Banco de Dados) e em qualquer serviço de hospedagem estática (Frontend).
+
+### 1️⃣ Backend e Banco de Dados (Render)
+
+O repositório contém um arquivo `render.yaml` na pasta do backend que automatiza a infraestrutura.
+
+1. Crie uma conta no [Render](https://render.com/).
+2. No painel, clique em **New +** e selecione **Blueprint**.
+3. Conecte o seu repositório do GitHub.
+4. O Render irá detectar o arquivo `render.yaml` e sugerir a criação de dois serviços:
+    * **moeda-estudantil-db**: Banco de dados PostgreSQL.
+    * **moeda-estudantil-api**: A aplicação Spring Boot.
+5. Clique em **Apply**. O Render irá provisionar o banco e iniciar o build da API.
+
+#### Configuração de Variáveis de Ambiente
+Após a criação, certifique-se de que as seguintes variáveis estão configuradas nas "Environment Variables" do serviço web (`moeda-estudantil-api`):
+
+| Variável | Valor | Descrição |
+| :--- | :--- | :--- |
+| `SPRING_PROFILES_ACTIVE` | `prod` | Ativa o perfil de produção configurado no `application-prod.properties`. |
+| `DATABASE_URL` | *(Automático)* | O Render preenche isto automaticamente ao ligar o DB. |
+| `EMAIL_USERNAME` | `seu-email@gmail.com` | Conta Gmail para envio de notificações. |
+| `EMAIL_PASSWORD` | `senha-de-app` | Senha de aplicativo (App Password) do Google. |
+
+### 2️⃣ Frontend (Interface Web)
+
+Como o frontend (`html/`) é composto por arquivos estáticos (HTML/CSS/JS), está sendo hospedado no **Vercel**.
+
+#### Passo A: Configurar a URL da API
+Antes de fazer o deploy, é necessário apontar o frontend para o seu backend no Render.
+
+1. Abra os arquivos `.js` na pasta `html/js/` (ex: `auth-student.js`, `ui.js`, etc).
+2. Localize a constante `API_BASE`:
+   ```javascript
+   // Substitua pela URL fornecida pelo Render após o deploy do backend
+   const API_BASE = '[https://nome-do-seu-servico.onrender.com/api/api/](https://nome-do-seu-servico.onrender.com/api/api/)';
+
+   #### Passo B: Deploy (Exemplo com Vercel)
+
+1. Crie uma conta na Vercel.
+2. Instale a CLI da Vercel (npm i -g vercel) ou use a interface web.
+3. Se usar a interface web:
+
+* Importe o seu repositório git.
+
+* Nas configurações de Root Directory, selecione a pasta html.
+
+* Clique em Deploy.
